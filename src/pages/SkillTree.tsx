@@ -105,7 +105,7 @@ export default function SkillTree() {
             <button
               onClick={() => startNode(selected)}
               disabled={selected.lessonIds.length === 0}
-              className="w-full h-12 bg-accent-cyan text-[#001f25] font-bold rounded-btn flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-40"
+              className="w-full h-12 bg-accent-cyan text-bg font-bold rounded-btn flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-40"
             >
               <Play size={18} /> {selected.lessonIds.length ? 'Start' : 'Locked'}
             </button>

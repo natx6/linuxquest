@@ -21,7 +21,7 @@ interface Props {
   onExecute?: (info: { command: string; output: string; cwd: string }) => void;
 }
 
-const PROMPT_USER = '\x1b[36muser@linuxquest\x1b[0m:\x1b[35m~\x1b[0m\x1b[36m$\x1b[0m ';
+const PROMPT_USER = '\x1b[1muser@linuxquest\x1b[0m:\x1b[90m~\x1b[0m\x1b[1m$\x1b[0m ';
 
 const Terminal = forwardRef<TerminalHandle, Props>(function Terminal(
   { startingFS, startingCwd = '/home/user', distro, onExecute },
@@ -100,8 +100,8 @@ const Terminal = forwardRef<TerminalHandle, Props>(function Terminal(
       theme: {
         background: '#0A0E14',
         foreground: '#E6EDF3',
-        cursor: '#22D3EE',
-        selectionBackground: 'rgba(34,211,238,0.3)',
+        cursor: '#E6EDF3',
+        selectionBackground: 'rgba(230,237,243,0.3)',
         black: '#0A0E14',
         cyan: '#22D3EE',
         magenta: '#E879F9',

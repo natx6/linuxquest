@@ -35,7 +35,7 @@ function InstallBanner({ doneCount }: { doneCount: number }) {
         <p className="text-xs text-text-muted">Offline lessons, fullscreen terminal.</p>
       </div>
       <button
-        className="min-h-[44px] px-3 rounded-btn bg-accent-cyan text-[#001f25] text-sm font-bold"
+        className="min-h-[44px] px-3 rounded-btn bg-accent-cyan text-bg text-sm font-bold"
         onClick={async () => {
           const d = deferred as unknown as { prompt?: () => void };
           d?.prompt?.();
@@ -61,9 +61,12 @@ function InstallBanner({ doneCount }: { doneCount: number }) {
 
 export default function Hub() {
   const { xp, streak, distro } = useUserStore();
-  const { currentLessonId, completedLessons } = useProgressStore();
+  const { currentLessonId, completedLessons, unlockedNodes } = useProgressStore();
   const prog = progressToNextLevel(xp);
   const current = lessonById(currentLessonId);
+  const pipesUnlocked =
+    unlockedNodes.includes('basics-n4') || completedLessons.includes('basics.pipes');
+  const challengeTarget = pipesUnlocked ? '/lesson/basics.pipes' : `/lesson/${currentLessonId}`;
   const isNew = completedLessons.length === 0;
 
   return (
@@ -122,7 +125,7 @@ export default function Hub() {
         {current && (
           <Link
             to={`/lesson/${current.id}`}
-            className="w-full h-11 bg-accent-cyan text-[#001f25] font-semibold rounded-btn flex items-center justify-center gap-2 min-h-[44px]"
+            className="w-full h-11 bg-accent-cyan text-bg font-semibold rounded-btn flex items-center justify-center gap-2 min-h-[44px]"
           >
             {isNew ? 'Start' : 'Resume'} <ChevronRight size={18} />
           </Link>
@@ -132,10 +135,12 @@ export default function Hub() {
       <Card>
         <h3 className="font-semibold mb-1">Daily Challenge</h3>
         <p className="text-sm text-text-muted mb-3">
-          Speed run: chain <code className="font-mono">ls | grep</code> in under 30s for +50 XP.
+          {pipesUnlocked
+            ? 'Speed run: chain ls | grep in under 30s for +50 XP.'
+            : 'Finish Basics to unlock the pipes speed run. Warm up on your current quest.'}
         </p>
         <Link
-          to="/lesson/basics.pipes"
+          to={challengeTarget}
           className="w-full h-11 border border-border text-text font-semibold rounded-btn flex items-center justify-center min-h-[44px]"
         >
           Accept Challenge

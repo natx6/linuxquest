@@ -7,7 +7,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const styles: Record<Variant, string> = {
-  primary: 'bg-accent-cyan text-[#001f25] font-semibold hover:brightness-110 active:scale-[0.98]',
+  primary: 'bg-accent-cyan text-bg font-semibold hover:bg-white active:scale-[0.98]',
   ghost: 'bg-surface-container hover:bg-surface-high text-text active:scale-[0.98]',
   magenta: 'bg-surface-high text-accent-magenta active:scale-[0.99]',
 };

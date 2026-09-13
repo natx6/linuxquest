@@ -153,7 +153,7 @@ export default function Onboarding() {
         <button
           onClick={() => submit(selected)}
           disabled={booting}
-          className="w-full h-12 rounded-btn bg-accent-cyan text-[#001f25] font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform min-h-[44px]"
+          className="w-full h-12 rounded-btn bg-accent-cyan text-bg font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform min-h-[44px]"
         >
           <span>{booting ? `Booting ${selected}…` : 'Start Learning'}</span>
           {!booting && <ArrowRight size={18} />}

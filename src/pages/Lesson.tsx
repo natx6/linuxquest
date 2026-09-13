@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { ChevronLeft, Flame, Lightbulb, RotateCcw, Check, Zap, ArrowRight } from 'lucide-react';
+import { ChevronLeft, Flame, Lightbulb, RotateCcw, Check, Zap, ArrowRight, Lock } from 'lucide-react';
 import Terminal, { type TerminalHandle } from '../components/Terminal';
 import BottomNav from '../components/ui/BottomNav';
-import { lessonById, nextLesson } from '../data/lessons';
+import { LESSONS, lessonById, nextLesson } from '../data/lessons';
 import { TRACKS } from '../data/skillTree';
 import { validate } from '../lib/validator';
 import { lessonXp, levelForXp } from '../lib/xp';
@@ -16,13 +16,14 @@ export default function Lesson() {
   const lesson = lessonById(id ?? '');
   const termRef = useRef<TerminalHandle>(null);
   const [hintOpen, setHintOpen] = useState(false);
-  const [hintsUsed, setHintsUsed] = useState(0);
+  const [revealed, setRevealed] = useState(0);
+  const [solutionShown, setSolutionShown] = useState(false);
+  const [fails, setFails] = useState(0);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [passed, setPassed] = useState(false);
   const [earned, setEarned] = useState(0);
   const [leveled, setLeveled] = useState(false);
   const [streakStarted, setStreakStarted] = useState(false);
-  const [, forceTick] = useState(0);
 
   const distro = useUserStore((s) => s.distro);
   const streak = useUserStore((s) => s.streak);
@@ -31,6 +32,7 @@ export default function Lesson() {
   const bumpCompleted = useUserStore((s) => s.completeLesson);
   const completeLesson = useProgressStore((s) => s.completeLesson);
   const completedLessons = useProgressStore((s) => s.completedLessons);
+  const unlockedNodes = useProgressStore((s) => s.unlockedNodes);
 
   const next = useMemo(() => (lesson ? nextLesson(lesson.id) : undefined), [lesson]);
 
@@ -38,19 +40,51 @@ export default function Lesson() {
     return (
       <main className="min-h-dvh max-w-app mx-auto px-4 pt-6 pb-24">
         <p className="text-sm text-text-muted">Lesson not found.</p>
-        <Link to="/" className="text-accent-cyan text-sm">← Back to Hub</Link>
+        <Link to="/" className="text-text text-sm">← Back to Hub</Link>
+        <BottomNav />
+      </main>
+    );
+  }
+
+  if (!unlockedNodes.includes(lesson.nodeId)) {
+    return (
+      <main className="min-h-dvh max-w-app mx-auto px-4 pt-20 pb-24 flex flex-col items-center text-center gap-3">
+        <Lock size={28} className="text-text-muted" />
+        <h1 className="font-semibold text-lg">{lesson.title} is locked</h1>
+        <p className="text-sm text-text-muted">
+          Finish the earlier lessons to unlock it. Your current quest is waiting on the Hub.
+        </p>
+        <button
+          onClick={() => navigate('/')}
+          className="mt-2 w-full min-h-[44px] rounded-btn bg-text text-bg font-bold"
+        >
+          Back to Hub
+        </button>
+        <button
+          onClick={() => navigate('/tree')}
+          className="w-full min-h-[44px] rounded-btn border border-border text-text"
+        >
+          View Skill Tree
+        </button>
         <BottomNav />
       </main>
     );
   }
 
   const alreadyDone = completedLessons.includes(lesson.id);
+  const hintsUsed = solutionShown ? lesson.hints.length : revealed;
+  const solutionCmd =
+    lesson.expected.command ?? lesson.expected.commandAlt?.[0] ?? '(see hints)';
 
-  const showHint = () => {
-    setHintOpen((v) => {
-      if (!v) setHintsUsed((h) => h + 1);
-      return !v;
-    });
+  const openHints = () => {
+    setHintOpen(true);
+    setRevealed((r) => (r === 0 ? 1 : r));
+  };
+
+  const revealSolution = () => {
+    setSolutionShown(true);
+    setHintOpen(true);
+    setRevealed(lesson.hints.length);
   };
 
   const handleCheck = () => {
@@ -60,40 +94,43 @@ export default function Lesson() {
     const res = validate(lesson, last, out, snap);
     if (res.pass) {
       if (!passed) {
-        const gain = alreadyDone ? 5 : lessonXp(hintsUsed, lesson.xp);
-        const before = levelForXp(xp);
-        const wasFresh = streak === 0;
-        addXp(gain);
-        bumpCompleted();
-        setEarned(gain);
-        setLeveled(levelForXp(xp + gain) > before);
-        setStreakStarted(wasFresh);
-        // unlocks: if node's lessons all done (including this), unlock node.unlocks
-        const node = TRACKS.flatMap((t) => t.nodes).find((n) => n.id === lesson.nodeId);
-        let unlocks: string[] = [];
-        if (node) {
-          const allDone = node.lessonIds.every(
-            (l) => l === lesson.id || completedLessons.includes(l),
-          );
-          if (allDone) unlocks = node.unlocks;
+        if (alreadyDone) {
+          setEarned(0);
+        } else {
+          const gain = lessonXp(hintsUsed, lesson.xp);
+          const before = levelForXp(xp);
+          const wasFresh = streak === 0;
+          addXp(gain);
+          bumpCompleted();
+          setEarned(gain);
+          setLeveled(levelForXp(xp + gain) > before);
+          setStreakStarted(wasFresh);
+          const node = TRACKS.flatMap((t) => t.nodes).find((n) => n.id === lesson.nodeId);
+          let unlocks: string[] = [];
+          if (node) {
+            const allDone = node.lessonIds.every(
+              (l) => l === lesson.id || completedLessons.includes(l),
+            );
+            if (allDone) unlocks = node.unlocks;
+          }
+          completeLesson(lesson.id, next?.id, unlocks);
         }
-        completeLesson(lesson.id, next?.id, unlocks);
       }
       setPassed(true);
       setFeedback(null);
+      setFails(0);
     } else {
-      setFeedback(res.partial >= 0.4 ? `${res.reason} (+partial credit if you Check again after fixing)` : res.reason);
+      setFails((f) => f + 1);
+      setFeedback(res.reason);
     }
-    forceTick((x) => x + 1);
   };
 
   const handleReset = () => {
     termRef.current?.reset();
     setPassed(false);
     setFeedback(null);
+    setFails(0);
   };
-
-  const chips = ['-la', '-a', '-l', '~', '| grep '];
 
   return (
     <main className="min-h-dvh max-w-app mx-auto px-3 pt-16 pb-40 flex flex-col gap-3 bg-bg">
@@ -111,16 +148,16 @@ export default function Lesson() {
             <span className="w-2 h-2 rounded-full bg-track-basics shrink-0" />
             <span className="text-sm text-text truncate">{lesson.track}</span>
             <span className="text-text-muted text-xs">›</span>
-            <span className="font-mono text-sm font-bold text-accent-cyan truncate">
+            <span className="font-mono text-sm font-bold text-text truncate">
               {lesson.title}
             </span>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <span className="flex items-center gap-1 bg-surface-high px-2 py-1 rounded-full text-track-sysadmin">
-              <Flame size={14} />
+            <span className="flex items-center gap-1 border border-border px-2 py-1 rounded-full">
+              <Flame size={14} className={streak > 0 ? 'text-track-sysadmin' : 'text-text-muted'} />
               <span className="font-mono text-[11px] font-bold">{streak}</span>
             </span>
-            <span className="flex items-center gap-1 bg-surface-high px-2 py-1 rounded-full text-accent-cyan">
+            <span className="flex items-center gap-1 border border-border px-2 py-1 rounded-full">
               <Zap size={13} />
               <span className="font-mono text-[11px] font-bold">+{lesson.xp} XP</span>
             </span>
@@ -128,26 +165,51 @@ export default function Lesson() {
         </div>
       </section>
 
-      {/* Prompt card */}
+      {/* Prompt + concept card */}
       <section className="w-full bg-surface border border-border rounded-xl p-3 mt-2">
         <div className="flex items-center justify-between mb-1">
-          <span className="font-mono text-[11px] uppercase tracking-wider text-accent-cyan">
-            Lesson {lesson.index} of 10
+          <span className="font-mono text-[11px] text-text-muted">
+            Lesson {lesson.index} of {LESSONS.length}
+            {alreadyDone && ' • Practice'}
           </span>
           <span className="text-[11px] text-text-muted">~2m</span>
         </div>
-        <p className="text-[15px] leading-snug font-medium">{lesson.prompt}</p>
+        <p className="text-[15px] leading-snug font-medium mb-2">{lesson.prompt}</p>
+        <p className="text-[13px] text-text-muted leading-snug mb-2">{lesson.concept}</p>
+        <div className="font-mono text-[13px] bg-terminal border border-border rounded px-2.5 py-2 text-text">
+          <span className="text-text-muted select-none">$ </span>{lesson.example}
+        </div>
         {hintOpen && (
-          <div className="mt-2 p-2.5 bg-surface-high rounded-lg text-sm">
-            <p className="text-state-warning font-semibold text-xs mb-1 flex items-center gap-1">
-              <Lightbulb size={14} /> Hint {hintsUsed}
+          <div className="mt-2 p-2.5 bg-surface-high border border-border rounded-lg text-sm">
+            <p className="text-xs mb-1 flex items-center gap-1 font-semibold">
+              <Lightbulb size={14} /> Hints ({hintsUsed} used · −5 XP each)
             </p>
-            {lesson.hints.map((h, i) => (
-              <p key={i} className={`text-sm ${i < hintsUsed ? 'text-text' : 'text-text-muted blur-[1px] select-none'}`}>
+            {lesson.hints.slice(0, Math.max(1, revealed)).map((h, i) => (
+              <p key={i} className="text-sm text-text">
                 {i + 1}. {h}
               </p>
             ))}
-            <p className="text-[11px] text-text-muted mt-1">Each hint −5 XP (min 5 XP).</p>
+            {revealed < lesson.hints.length && (
+              <button
+                onClick={() => setRevealed((r) => r + 1)}
+                className="mt-1.5 text-xs font-semibold underline underline-offset-2 min-h-[44px]"
+              >
+                Need another hint? (−5 XP)
+              </button>
+            )}
+            {!solutionShown && (
+              <button
+                onClick={revealSolution}
+                className="block mt-1 text-xs text-text-muted underline underline-offset-2 min-h-[44px]"
+              >
+                I'm stuck — reveal the solution (min XP)
+              </button>
+            )}
+            {solutionShown && (
+              <p className="mt-1.5 font-mono text-[13px] bg-terminal border border-border rounded px-2 py-1.5">
+                <span className="text-text-muted">$ </span>{solutionCmd}
+              </p>
+            )}
           </div>
         )}
       </section>
@@ -169,19 +231,16 @@ export default function Lesson() {
             startingFS={lesson.startingFS}
             startingCwd={lesson.startingCwd}
             distro={distro}
-            onExecute={() => {
-              setFeedback(null);
-              forceTick((x) => x + 1);
-            }}
+            onExecute={() => setFeedback(null)}
           />
         </div>
-        <div className="px-3 py-2 bg-surface-container flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <div className="px-3 py-2 bg-surface-container flex items-center gap-1.5 overflow-x-auto no-scrollbar border-t border-border">
           <span className="font-mono text-[11px] text-text-muted pr-1 shrink-0">Keys:</span>
-          {chips.map((c) => (
+          {lesson.chips.map((c) => (
             <button
               key={c}
               onClick={() => termRef.current?.insertText(c.startsWith('|') ? ' | grep ' : ` ${c.trim()} `)}
-              className="bg-surface-highest px-2.5 py-1 rounded font-mono text-[11px] font-bold text-accent-cyan shrink-0 min-h-[32px]"
+              className="bg-surface-highest border border-border px-2.5 py-1 rounded font-mono text-[11px] font-bold text-text shrink-0 min-h-[32px]"
             >
               {c}
             </button>
@@ -190,27 +249,39 @@ export default function Lesson() {
       </section>
 
       {feedback && (
-        <p className="text-xs text-state-warning bg-surface-low rounded-lg p-2.5">{feedback}</p>
+        <div className="text-xs bg-surface border border-border rounded-lg p-2.5">
+          <p className="text-state-warning">{feedback}</p>
+          {fails >= 2 && !hintOpen && (
+            <button onClick={openHints} className="mt-1 font-semibold underline underline-offset-2 min-h-[44px]">
+              Stuck? Open a hint (−5 XP)
+            </button>
+          )}
+        </div>
       )}
 
       {passed && (
-        <div className="flex flex-col items-center gap-2 p-4 bg-surface-high rounded-xl text-center">
-          <div className="w-12 h-12 rounded-full bg-state-success/20 text-state-success flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 p-4 bg-surface border border-border rounded-xl text-center">
+          <div className="w-12 h-12 rounded-full bg-state-success/15 text-state-success flex items-center justify-center">
             <Check size={28} />
           </div>
-          <h3 className="font-bold">Challenge Solved!</h3>
-          <p className="text-sm text-text-muted">+{earned} XP {leveled && '• Level up!'}{streakStarted && ' • Streak started!'}</p>
+          <h3 className="font-bold">{alreadyDone && earned === 0 ? 'Practice complete' : 'Challenge Solved!'}</h3>
+          <p className="text-sm text-text-muted">
+            {earned > 0 ? `+${earned} XP` : 'No XP — practice run'}
+            {leveled && ' • Level up!'}
+            {streakStarted && ' • Streak started!'}
+          </p>
+          <p className="text-[13px] border-t border-border pt-2 w-full">{lesson.takeaway}</p>
           {next ? (
             <button
               onClick={() => navigate(`/lesson/${next.id}`)}
-              className="w-full min-h-[44px] rounded-btn bg-accent-cyan text-[#001f25] font-bold flex items-center justify-center gap-2"
+              className="w-full min-h-[44px] rounded-btn bg-text text-bg font-bold flex items-center justify-center gap-2"
             >
               Next: {next.title} <ArrowRight size={18} />
             </button>
           ) : (
             <button
               onClick={() => navigate('/tree')}
-              className="w-full min-h-[44px] rounded-btn bg-accent-cyan text-[#001f25] font-bold"
+              className="w-full min-h-[44px] rounded-btn bg-text text-bg font-bold"
             >
               View Skill Tree
             </button>
@@ -222,20 +293,20 @@ export default function Lesson() {
       <footer className="fixed bottom-14 inset-x-0 z-30 bg-bg border-t border-border">
         <div className="max-w-app mx-auto px-3 py-2 flex items-center gap-2">
           <button
-            onClick={showHint}
-            className="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-btn bg-surface-container text-text text-sm"
+            onClick={() => (hintOpen ? setHintOpen(false) : openHints())}
+            className="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-btn bg-surface-container border border-border text-text text-sm"
           >
-            <Lightbulb size={16} className="text-state-warning" /> Hint
+            <Lightbulb size={16} /> Hint
           </button>
           <button
             onClick={handleReset}
-            className="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-btn bg-surface-container text-text text-sm"
+            className="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-btn bg-surface-container border border-border text-text text-sm"
           >
-            <RotateCcw size={16} className="text-text-muted" /> Reset
+            <RotateCcw size={16} /> Reset
           </button>
           <button
             onClick={handleCheck}
-            className="flex-[1.4] min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-btn bg-accent-cyan text-[#001f25] font-bold"
+            className="flex-[1.4] min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-btn bg-text text-bg font-bold"
           >
             Check <Check size={18} strokeWidth={3} />
           </button>

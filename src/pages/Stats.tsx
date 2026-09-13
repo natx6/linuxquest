@@ -126,7 +126,7 @@ export default function Stats() {
           </div>
           <div className="flex-1 text-xs space-y-2">
             <p>Core utilities <span className="font-mono text-track-basics">{Math.min(mastered, 10)}/10</span></p>
-            <p>Pipes & streams <span className="font-mono text-accent-magenta">{completedLessons.includes('basics.pipes') ? '2/8' : '0/8'}</span></p>
+            <p>Pipes & streams <span className="font-mono text-text">{completedLessons.includes('basics.pipes') ? '2/8' : '0/8'}</span></p>
             <p>Search <span className="font-mono text-track-network">{completedLessons.includes('basics.grep') ? '1/12' : '0/12'}</span></p>
           </div>
         </div>

@@ -18,7 +18,7 @@ export default {
           muted: '#7D8590',
         },
         accent: {
-          cyan: '#22D3EE',
+          cyan: '#E6EDF3',
           magenta: '#E879F9',
         },
         state: {

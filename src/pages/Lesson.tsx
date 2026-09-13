@@ -133,7 +133,7 @@ export default function Lesson() {
   };
 
   return (
-    <main className="min-h-dvh max-w-app mx-auto px-3 pt-16 pb-40 flex flex-col gap-3 bg-bg">
+    <main className="min-h-dvh max-w-app mx-auto px-3 pt-16 pb-32 flex flex-col gap-3 bg-bg">
       {/* Top bar */}
       <section className="fixed top-0 inset-x-0 z-30 bg-surface border-b border-border">
         <div className="max-w-app mx-auto h-14 px-2 flex items-center justify-between">
@@ -289,8 +289,8 @@ export default function Lesson() {
         </div>
       )}
 
-      {/* Action bar */}
-      <footer className="fixed bottom-14 inset-x-0 z-30 bg-bg border-t border-border">
+      {/* Action bar — docked bottom; tab bar hidden in lesson focus mode */}
+      <footer className="fixed bottom-0 inset-x-0 z-30 bg-bg border-t border-border pb-safe">
         <div className="max-w-app mx-auto px-3 py-2 flex items-center gap-2">
           <button
             onClick={() => (hintOpen ? setHintOpen(false) : openHints())}
@@ -313,7 +313,6 @@ export default function Lesson() {
         </div>
       </footer>
 
-      <BottomNav />
     </main>
   );
 }

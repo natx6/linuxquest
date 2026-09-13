@@ -39,8 +39,8 @@ export default function SkillNode({
         ) : locked ? (
           <Lock size={20} className="text-text-muted" />
         ) : state === 'in-progress' ? (
-          <span className="relative flex items-center justify-center">
-            <svg className="absolute inset-0 w-14 h-14 -rotate-90" viewBox="0 0 56 56">
+          <>
+            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 56 56">
               <circle cx="28" cy="28" r="25" fill="none" stroke="#21262D" strokeWidth="3" />
               <circle
                 cx="28"
@@ -54,10 +54,10 @@ export default function SkillNode({
                 strokeWidth="3"
               />
             </svg>
-            <span className="font-mono font-bold text-sm" style={{ color: trackColor }}>
+            <span className="relative font-mono font-bold text-sm" style={{ color: trackColor }}>
               {node.command.split(' ')[0].slice(0, 2)}
             </span>
-          </span>
+          </>
         ) : (
           <span className="font-mono font-bold text-sm" style={{ color: trackColor }}>
             {node.command.split(' ')[0].slice(0, 2)}

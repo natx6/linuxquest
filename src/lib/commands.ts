@@ -63,6 +63,53 @@ function expandVars(tok: string): string {
   return tok;
 }
 
+
+interface ProcRow { user: string; pid: number; cpu: string; mem: string; cmd: string; }
+const DEFAULT_PROCS: ProcRow[] = [
+  { user: 'user', pid: 1, cpu: '0.0', mem: '0.1', cmd: '/sbin/init' },
+  { user: 'user', pid: 512, cpu: '0.1', mem: '0.4', cmd: 'sshd: user@pts/0' },
+  { user: 'user', pid: 891, cpu: '0.3', mem: '2.1', cmd: 'postgres: writer' },
+  { user: 'user', pid: 1024, cpu: '0.2', mem: '1.2', cmd: 'nginx: worker' },
+  { user: 'user', pid: 1337, cpu: '98.7', mem: '12.4', cmd: './miner --pool evil' },
+  { user: 'user', pid: 1400, cpu: '0.0', mem: '0.1', cmd: 'cron -f' },
+];
+const PROC_PATH = '/run/proc.json';
+
+function loadProcs(ctx: ExecContext): ProcRow[] {
+  const raw = ctx.vfs.readFile(PROC_PATH);
+  if (raw === null) {
+    ctx.vfs.writeFile(PROC_PATH, JSON.stringify(DEFAULT_PROCS));
+    return [...DEFAULT_PROCS];
+  }
+  try {
+    const arr = JSON.parse(raw) as ProcRow[];
+    return Array.isArray(arr) ? arr : [...DEFAULT_PROCS];
+  } catch {
+    return [...DEFAULT_PROCS];
+  }
+}
+
+function saveProcs(ctx: ExecContext, rows: ProcRow[]) {
+  ctx.vfs.writeFile(PROC_PATH, JSON.stringify(rows));
+}
+
+interface SvcState { active: string; enabled: string; }
+function loadSvc(ctx: ExecContext, name: string): SvcState {
+  const raw = ctx.vfs.readFile('/run/services/' + name);
+  if (raw === null) return { active: 'inactive', enabled: 'no' };
+  try {
+    const o = JSON.parse(raw) as Partial<SvcState>;
+    return { active: o.active ?? 'inactive', enabled: o.enabled ?? 'no' };
+  } catch {
+    return { active: 'inactive', enabled: 'no' };
+  }
+}
+
+function saveSvc(ctx: ExecContext, name: string, st: SvcState) {
+  ctx.vfs.writeFile('/run/services/' + name, JSON.stringify(st));
+}
+
+
 const ok = (stdout = '', stderr = '', extra: Partial<ExecResult> = {}): ExecResult => ({
   stdout, stderr, exitCode: stderr ? 1 : 0, ...extra,
 });
@@ -420,6 +467,89 @@ const handlers: Record<string, Handler> = {
     return ok(out.join('\n') + (out.length ? '\n' : ''));
   },
 
+  ps: (_a, ctx) => {
+    const rows = loadProcs(ctx);
+    const head = 'USER       PID %CPU %MEM COMMAND\n';
+    const body = rows
+      .map((r) => `${r.user.padEnd(10)} ${String(r.pid).padEnd(4)} ${r.cpu.padEnd(4)} ${r.mem.padEnd(4)} ${r.cmd}`)
+      .join('\n');
+    return ok(head + body + '\n');
+  },
+
+  kill: (args, ctx) => {
+    const target = args.find((a) => !a.startsWith('-'));
+    if (!target) return ok('', 'kill: usage: kill [-9] <pid>\n');
+    const pid = parseInt(target, 10);
+    if (Number.isNaN(pid)) return ok('', `kill: invalid pid '${target}'\n`);
+    const rows = loadProcs(ctx);
+    if (!rows.some((r) => r.pid === pid)) return ok('', `kill: (${pid}) - No such process\n`);
+    saveProcs(ctx, rows.filter((r) => r.pid !== pid));
+    return ok('');
+  },
+
+  pkill: (args, ctx) => {
+    const pat = args.find((a) => !a.startsWith('-'));
+    if (!pat) return ok('', 'pkill: usage: pkill <pattern>\n');
+    const rows = loadProcs(ctx);
+    const hit = rows.filter((r) => r.cmd.includes(pat));
+    if (!hit.length) return ok('', `pkill: no processes matched '${pat}'\n`);
+    saveProcs(ctx, rows.filter((r) => !r.cmd.includes(pat)));
+    return ok(hit.map((r) => `killed ${r.pid} (${r.cmd})`).join('\n') + '\n');
+  },
+
+  systemctl: (args, ctx) => {
+    const [verb, name] = args;
+    if (!verb || !name) return ok('', 'systemctl: usage: systemctl <status|start|stop|restart|is-active|is-enabled|enable> <service>\n');
+    const st = loadSvc(ctx, name);
+    switch (verb) {
+      case 'status': {
+        const line = st.active === 'active' ? 'Active: active (running)' : `Active: ${st.active}`;
+        return ok(`\u25cf ${name}.service\n   Loaded: loaded\n   ${line}\n`);
+      }
+      case 'is-active':
+        return ok(st.active + '\n');
+      case 'is-enabled':
+        return ok(st.enabled + '\n');
+      case 'start':
+        if (st.active === 'active') return ok('', `${name}: already running\n`);
+        saveSvc(ctx, name, { ...st, active: 'active' });
+        return ok('');
+      case 'stop':
+        saveSvc(ctx, name, { ...st, active: 'inactive' });
+        return ok('');
+      case 'restart':
+        saveSvc(ctx, name, { ...st, active: 'active' });
+        return ok('');
+      case 'enable':
+        saveSvc(ctx, name, { ...st, enabled: 'yes' });
+        return ok(`Created symlink for ${name}.\n`);
+      case 'disable':
+        saveSvc(ctx, name, { ...st, enabled: 'no' });
+        return ok('');
+      default:
+        return ok('', `systemctl: unknown verb '${verb}'\n`);
+    }
+  },
+
+  journalctl: (args, ctx) => {
+    const u = args.indexOf('-u');
+    const unit = u >= 0 ? args[u + 1] : undefined;
+    if (!unit) return ok('', 'journalctl: specify a unit: journalctl -u <service>\n');
+    const c = ctx.vfs.readFile('/var/log/' + unit + '.log');
+    if (c === null) return ok('', `-- No entries for ${unit} --\n`);
+    return ok(c.endsWith('\n') ? c : c + '\n');
+  },
+
+  crontab: (args, ctx) => {
+    if (args[0] === '-l') {
+      const c = ctx.vfs.readFile('/var/spool/cron/user');
+      if (c === null || c.trim() === '') return ok('no crontab for user\n');
+      return ok(c.endsWith('\n') ? c : c + '\n');
+    }
+    if (args[0] === '-e') return ok('Edit via redirect: echo \'<schedule> <cmd>\' >> ~/.cron && crontab ~/.cron\nSimpler here: echo \'<line>\' >> /var/spool/cron/user\n');
+    return ok('', 'crontab: usage: crontab -l\n');
+  },
+
   chmod: (args, ctx) => {
     if (args.length < 2) return ok('', 'chmod: missing operand\n');
     const [modeArg, target] = args;
@@ -447,6 +577,10 @@ const MAN: Record<string, string> = {
   cat: `CAT(1)  Print files to standard output\n\n  cat <file> [file...]   files print back-to-back, in order\n`,
   chmod: `CHMOD(1)  Change file modes\n\n  chmod <octal> <file>   e.g. 755 = rwxr-xr-x, 644 = rw-r--r--\n  Digits: 4 read, 2 write, 1 execute. Sum per owner, group, other.\n`,
   pwd: `PWD(1)  Print working directory\n\n  No flags needed. When lost, pwd first.\n`,
+  ps: `PS(1)  Report process status\n\n  ps aux   every process: USER PID %CPU %MEM COMMAND\n  Spot high %CPU, note the PID, then kill <pid>.\n`,
+  kill: `KILL(1)  Stop a process by PID\n\n  kill <pid>   polite request. Verify it is gone with ps aux.\n`,
+  systemctl: `SYSTEMCTL(1)  Control services\n\n  systemctl status <svc>     diagnose first\n  systemctl start <svc>      recover\n  systemctl is-active <svc>  prove it\n`,
+  crontab: `CRONTAB(1)  Schedule recurring jobs\n\n  crontab -l   list your jobs\n  Fields: minute hour day month weekday command\n  0 2 * * * = 02:00 daily.\n`,
   rm: `RM(1)  Remove files — permanently\n\n  rm <file>...   no trash, no undo. Directories need -r.\n`,
 };
 

@@ -36,10 +36,10 @@ export const TRACKS: Track[] = [
     color: '#FB923C',
     subtitle: 'Daemons & Ops',
     nodes: [
-      { id: 'sysadmin-n1', trackId: 'sysadmin', title: 'Logs', command: 'journalctl', xp: 30, lessonIds: [], unlocks: ['sysadmin-n2'] },
-      { id: 'sysadmin-n2', trackId: 'sysadmin', title: 'Processes', command: 'ps', xp: 30, lessonIds: [], unlocks: ['sysadmin-n3'] },
-      { id: 'sysadmin-n3', trackId: 'sysadmin', title: 'Services', command: 'systemctl', xp: 35, lessonIds: [], unlocks: ['sysadmin-n4'] },
-      { id: 'sysadmin-n4', trackId: 'sysadmin', title: 'Schedule', command: 'cron', xp: 40, lessonIds: [], unlocks: [] },
+      { id: 'sysadmin-n1', trackId: 'sysadmin', title: 'Logs', command: 'tail · grep', xp: 30, lessonIds: ['logs.predict', 'logs.predict2', 'logs.drill', 'logs.prove'], unlocks: ['sysadmin-n2'] },
+      { id: 'sysadmin-n2', trackId: 'sysadmin', title: 'Processes', command: 'ps · kill', xp: 30, lessonIds: ['ps.predict', 'ps.predict2', 'ps.drill', 'ps.prove'], unlocks: ['sysadmin-n3'] },
+      { id: 'sysadmin-n3', trackId: 'sysadmin', title: 'Services', command: 'systemctl', xp: 35, lessonIds: ['svc.predict', 'svc.predict2', 'svc.drill', 'svc.prove'], unlocks: ['sysadmin-n4'] },
+      { id: 'sysadmin-n4', trackId: 'sysadmin', title: 'Schedule', command: 'cron', xp: 40, lessonIds: ['cron.predict', 'cron.predict2', 'cron.drill', 'cron.prove'], unlocks: [] },
     ],
   },
   {

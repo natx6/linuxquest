@@ -19,7 +19,7 @@ const COMMANDS_PER_LESSON: Record<string, number> = {
   'basics.pwd': 1, 'basics.ls': 1, 'basics.ls-a': 1, 'hidden.prove': 1,
   'basics.cd': 1, 'moving.prove': 1, 'basics.cat': 1,
   'basics.mkdir-touch': 2, 'creating.prove': 2, 'basics.cp-mv': 2,
-  'basics.rm': 1, 'basics.grep': 1, 'basics.pipes': 2, 'chaining.prove': 2, 'reading.chain': 1, 'organizing.chain': 1, 'chaining.capstone': 1, 'permissions.drill': 1, 'permissions.prove': 1, 'output.drill': 1, 'output.prove': 1, 'manual.drill': 1,
+  'basics.rm': 1, 'basics.grep': 1, 'basics.pipes': 2, 'chaining.prove': 2, 'reading.chain': 1, 'organizing.chain': 1, 'chaining.capstone': 1, 'permissions.drill': 1, 'permissions.prove': 1, 'output.drill': 1, 'output.prove': 1, 'manual.drill': 1, 'logs.drill': 1, 'logs.prove': 1, 'ps.drill': 1, 'ps.prove': 1, 'svc.drill': 1, 'svc.prove': 1, 'cron.drill': 1, 'cron.prove': 1,
 };
 const COMMAND_TOTAL = Object.values(COMMANDS_PER_LESSON).reduce((a, n) => a + n, 0);
 

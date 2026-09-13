@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ChevronLeft, Flame, Lightbulb, RotateCcw, Check, Zap, ArrowRight, Lock } from 'lucide-react';
 import Terminal, { type TerminalHandle } from '../components/Terminal';
@@ -36,6 +36,21 @@ export default function Lesson() {
   const unlockedNodes = useProgressStore((s) => s.unlockedNodes);
 
   const next = useMemo(() => (lesson ? nextLesson(lesson.id) : undefined), [lesson]);
+
+  // Same route component is reused between lessons — clear per-lesson state.
+  useEffect(() => {
+    setHintOpen(false);
+    setShowExample(false);
+    setRevealed(0);
+    setSolutionShown(false);
+    setFails(0);
+    setFeedback(null);
+    setPassed(false);
+    setEarned(0);
+    setLeveled(false);
+    setStreakStarted(false);
+    termRef.current?.reset();
+  }, [id]);
 
   if (!lesson) {
     return (

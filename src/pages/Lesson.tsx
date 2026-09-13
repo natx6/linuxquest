@@ -177,7 +177,8 @@ export default function Lesson() {
     const last = termRef.current?.getLastCommand() ?? '';
     const out = termRef.current?.getOutputBuffer() ?? '';
     const snap = termRef.current?.getSnapshot() ?? {};
-    const res = validate(lesson, last, out, snap);
+    const hist = termRef.current?.getHistory() ?? [];
+    const res = validate(lesson, last, out, snap, hist);
     if (res.pass) {
       if (!passed) awardPass();
       setPassed(true);

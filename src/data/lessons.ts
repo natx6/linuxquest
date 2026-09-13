@@ -33,6 +33,8 @@ export interface Lesson {
     output?: string;
     outputAlt?: string[];
     fsState?: Record<string, unknown>;
+    /** Ordered commands (subsequence of session history) for chaining missions. */
+    sequence?: string[];
   };
   hints: string[];
   xp: number;
@@ -326,6 +328,27 @@ const RAW: Array<Omit<Lesson, 'index'>> = [
     hints: ['cat prints file contents.', 'Type cat readme.txt, then Check.'],
     xp: 25,
   }),
+  t({
+    id: 'reading.chain',
+    nodeId: 'basics-n2',
+    arc: 'reading',
+    role: 'prove',
+    title: 'Field brief',
+    track: 'Basics',
+    prompt: 'Field brief: dropped in /tmp. Jump to /home/user/Documents by absolute path, list what is there, then print briefing.txt — in that order.',
+    concept: 'Missions chain the whole loop: move (cd), survey (ls), read (cat). The order matters — you cannot read what you have not found, and you cannot find what you have not reached.\n\nThis is Token audit grown up: orient → discover → act. From here on, prove steps assume the full loop, not single commands.',
+    takeaway: 'Orient → discover → act.',
+    chips: ['/home/user/Documents', 'briefing.txt'],
+    startingFS: { [HOME]: { 'Documents': { 'briefing.txt': 'briefing: phoenix rises at dawn\n' } }, '/tmp': {} },
+    startingCwd: '/tmp',
+    expected: {
+      command: 'cat briefing.txt',
+      output: 'phoenix',
+      sequence: ['cd /home/user/Documents', 'ls', 'cat briefing.txt'],
+    },
+    hints: ['Step 1: cd /home/user/Documents', 'Step 2: ls — then cat briefing.txt, then Check.'],
+    xp: 25,
+  }),
   // ——— Arc: creating ———
   p({
     id: 'creating.predict',
@@ -444,6 +467,27 @@ const RAW: Array<Omit<Lesson, 'index'>> = [
       fsState: { home: { user: { 'notes.txt': 'draft\n', 'final.txt': 'draft\n' } } },
     },
     hints: ['Step 1: cp notes.txt notes.bak', 'Step 2: mv notes.bak final.txt, then Check.'],
+    xp: 25,
+  }),
+  t({
+    id: 'organizing.chain',
+    nodeId: 'basics-n3',
+    arc: 'organizing',
+    role: 'prove',
+    title: 'Ship the release',
+    track: 'Basics',
+    prompt: 'Ship it: create release/, place a copy of notes.txt inside named final.txt, then list release/ to verify.',
+    concept: 'cp can rename while copying: cp notes.txt release/final.txt reads “copy into that directory under this name”. With mkdir before and a verifying ls after, this is the smallest real release flow: build the container, publish the artifact, confirm it landed.\n\nNotice the loop again — create, place, verify — the same orient → discover → act rhythm from Field brief, now with files you made yourself.',
+    takeaway: 'Build, publish, verify.',
+    chips: ['release', 'final.txt'],
+    startingFS: { [HOME]: { 'notes.txt': 'draft\n' } },
+    startingCwd: HOME,
+    expected: {
+      output: 'final.txt',
+      fsState: { home: { user: { release: { 'final.txt': 'draft\n' } } } },
+      sequence: ['mkdir release', 'cp notes.txt release/final.txt', 'ls release'],
+    },
+    hints: ['mkdir release first', 'cp notes.txt release/final.txt — then ls release, then Check.'],
     xp: 25,
   }),
   // ——— Arc: deleting ———
@@ -611,6 +655,26 @@ const RAW: Array<Omit<Lesson, 'index'>> = [
     startingCwd: HOME,
     expected: { command: 'grep error app.log | wc -l', output: ' 2 ' },
     hints: ['Step 1 works alone: grep error app.log', 'Then pipe it: grep error app.log | wc -l, then Check.'],
+    xp: 25,
+  }),
+  t({
+    id: 'chaining.capstone',
+    nodeId: 'basics-n4',
+    arc: 'chaining',
+    role: 'prove',
+    title: 'Night shift',
+    track: 'Basics',
+    prompt: 'Night shift: from /tmp, get home by absolute path, reveal everything including hidden, then count error lines in app.log with a pipe.',
+    concept: 'The full Basics loop in one sitting: move absolutely (Moving), audit hidden files (Token audit), triage the log (grep | wc -l). Nothing here is new — that is the point. Fluency is old moves at full speed, in the right order, without prompting.\n\nIf you can do this cold, you can walk onto any unfamiliar machine and make yourself useful in sixty seconds.',
+    takeaway: 'You can triage an unfamiliar machine.',
+    chips: ['/home/user', '-a', '| wc'],
+    startingFS: { [HOME]: { '.bashrc': 'export PATH\n', 'app.log': 'ok started\nerror disk full\nok done\nerror timeout\n', 'notes.txt': 'x\n' }, '/tmp': {} },
+    startingCwd: '/tmp',
+    expected: {
+      output: ' 2 ',
+      sequence: ['cd /home/user', 'ls -a', 'grep error app.log | wc -l'],
+    },
+    hints: ['cd /home/user, then ls -a', 'grep error app.log | wc -l, then Check.'],
     xp: 25,
   }),
 ];

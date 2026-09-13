@@ -29,6 +29,7 @@ export function validate(
   lastCommand: string,
   outputBuffer: string,
   fsSnapshot: Record<string, unknown>,
+  commandHistory: string[] = [],
 ): ValidationResult {
   const exp: NonNullable<Lesson['expected']> = lesson.expected ?? {};
   const reasons: string[] = [];
@@ -66,6 +67,21 @@ export function validate(
     checks++;
     if (matchFs(fsSnapshot, exp.fsState)) passed++;
     else reasons.push('Filesystem state does not match yet');
+  }
+
+  if (exp.sequence?.length) {
+    checks++;
+    const hist = commandHistory.map(normCmd).filter(Boolean);
+    let i = 0;
+    for (const h of hist) {
+      if (h === normCmd(exp.sequence[i])) i++;
+      if (i === exp.sequence.length) break;
+    }
+    if (i === exp.sequence.length) passed++;
+    else {
+      const next = exp.sequence[Math.min(i, exp.sequence.length - 1)];
+      reasons.push(`Run the loop in order (${i}/${exp.sequence.length} done). Next: \`${next}\``);
+    }
   }
 
   if (checks === 0) return { pass: true, partial: 1, reason: 'No checks defined' };

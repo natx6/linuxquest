@@ -9,6 +9,7 @@ export interface TerminalHandle {
   reset: () => void;
   getSnapshot: () => Record<string, unknown>;
   getLastCommand: () => string;
+  getHistory: () => string[];
   getOutputBuffer: () => string;
   getCwd: () => string;
   insertText: (t: string) => void;
@@ -68,6 +69,7 @@ const Terminal = forwardRef<TerminalHandle, Props>(function Terminal(
     reset: doReset,
     getSnapshot: () => vfsRef.current.snapshot(),
     getLastCommand: () => lastCmdRef.current,
+    getHistory: () => [...historyRef.current],
     getOutputBuffer: () => outputRef.current,
     getCwd: () => cwdRef.current,
     insertText: (t: string) => {

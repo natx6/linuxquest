@@ -16,6 +16,7 @@ export default function Lesson() {
   const lesson = lessonById(id ?? '');
   const termRef = useRef<TerminalHandle>(null);
   const [hintOpen, setHintOpen] = useState(false);
+  const [showExample, setShowExample] = useState(false);
   const [revealed, setRevealed] = useState(0);
   const [solutionShown, setSolutionShown] = useState(false);
   const [fails, setFails] = useState(0);
@@ -176,9 +177,18 @@ export default function Lesson() {
         </div>
         <p className="text-[15px] leading-snug font-medium mb-2">{lesson.prompt}</p>
         <p className="text-[13px] text-text-muted leading-snug mb-2">{lesson.concept}</p>
-        <div className="font-mono text-[13px] bg-terminal border border-border rounded px-2.5 py-2 text-text">
-          <span className="text-text-muted select-none">$ </span>{lesson.example}
-        </div>
+        {showExample ? (
+          <div className="font-mono text-[13px] bg-terminal border border-border rounded px-2.5 py-2 text-text">
+            <span className="text-text-muted select-none">$ </span>{lesson.example}
+          </div>
+        ) : (
+          <button
+            onClick={() => setShowExample(true)}
+            className="text-xs font-semibold underline underline-offset-2 min-h-[44px] text-text-muted"
+          >
+            Want to see it done once? Show an example
+          </button>
+        )}
         {hintOpen && (
           <div className="mt-2 p-2.5 bg-surface-high border border-border rounded-lg text-sm">
             <p className="text-xs mb-1 flex items-center gap-1 font-semibold">

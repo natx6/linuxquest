@@ -39,7 +39,7 @@ export const TRACKS: Track[] = [
       { id: 'sysadmin-n1', trackId: 'sysadmin', title: 'Logs', command: 'tail · grep', xp: 30, lessonIds: ['logs.predict', 'logs.predict2', 'logs.drill', 'logs.prove'], unlocks: ['sysadmin-n2'] },
       { id: 'sysadmin-n2', trackId: 'sysadmin', title: 'Processes', command: 'ps · kill', xp: 30, lessonIds: ['ps.predict', 'ps.predict2', 'ps.drill', 'ps.prove'], unlocks: ['sysadmin-n3'] },
       { id: 'sysadmin-n3', trackId: 'sysadmin', title: 'Services', command: 'systemctl', xp: 35, lessonIds: ['svc.predict', 'svc.predict2', 'svc.drill', 'svc.prove'], unlocks: ['sysadmin-n4'] },
-      { id: 'sysadmin-n4', trackId: 'sysadmin', title: 'Schedule', command: 'cron', xp: 40, lessonIds: ['cron.predict', 'cron.predict2', 'cron.drill', 'cron.prove'], unlocks: [] },
+      { id: 'sysadmin-n4', trackId: 'sysadmin', title: 'Schedule', command: 'cron', xp: 40, lessonIds: ['cron.predict', 'cron.predict2', 'cron.drill', 'cron.prove'], unlocks: ['dev-n1'] },
     ],
   },
   {
@@ -48,10 +48,10 @@ export const TRACKS: Track[] = [
     color: '#A78BFA',
     subtitle: 'Build & Code',
     nodes: [
-      { id: 'dev-n1', trackId: 'dev', title: 'Version control', command: 'git init', xp: 25, lessonIds: [], unlocks: ['dev-n2'] },
-      { id: 'dev-n2', trackId: 'dev', title: 'Editor', command: 'vim', xp: 30, lessonIds: [], unlocks: ['dev-n3'] },
-      { id: 'dev-n3', trackId: 'dev', title: 'Sessions', command: 'tmux', xp: 30, lessonIds: [], unlocks: ['dev-n4'] },
-      { id: 'dev-n4', trackId: 'dev', title: 'Build', command: 'make', xp: 35, lessonIds: [], unlocks: [] },
+      { id: 'dev-n1', trackId: 'dev', title: 'Version control', command: 'git', xp: 25, lessonIds: ['git.predict', 'git.predict2', 'git.drill', 'git.prove'], unlocks: ['dev-n2'] },
+      { id: 'dev-n2', trackId: 'dev', title: 'Text fu', command: 'sort · cut', xp: 30, lessonIds: ['text.predict', 'text.predict2', 'text.drill', 'text.prove'], unlocks: ['dev-n3'] },
+      { id: 'dev-n3', trackId: 'dev', title: 'Code search', command: 'find', xp: 30, lessonIds: ['finding.predict', 'finding.predict2', 'finding.drill', 'finding.prove'], unlocks: ['dev-n4'] },
+      { id: 'dev-n4', trackId: 'dev', title: 'Stream editing', command: 'sed', xp: 35, lessonIds: ['streams.predict', 'streams.predict2', 'streams.drill', 'streams.prove'], unlocks: ['network-n1'] },
     ],
   },
   {
@@ -60,10 +60,10 @@ export const TRACKS: Track[] = [
     color: '#4ADE80',
     subtitle: 'Sockets & Protocols',
     nodes: [
-      { id: 'network-n1', trackId: 'network', title: 'Reachability', command: 'ping · curl', xp: 30, lessonIds: [], unlocks: ['network-n2'] },
-      { id: 'network-n2', trackId: 'network', title: 'Sockets', command: 'netstat', xp: 30, lessonIds: [], unlocks: ['network-n3'] },
-      { id: 'network-n3', trackId: 'network', title: 'Secure shell', command: 'ssh', xp: 35, lessonIds: [], unlocks: ['network-n4'] },
-      { id: 'network-n4', trackId: 'network', title: 'Firewall', command: 'ufw', xp: 40, lessonIds: [], unlocks: [] },
+      { id: 'network-n1', trackId: 'network', title: 'Reachability', command: 'ping · curl', xp: 30, lessonIds: ['reach.predict', 'reach.predict2', 'reach.drill', 'reach.prove'], unlocks: ['network-n2'] },
+      { id: 'network-n2', trackId: 'network', title: 'Sockets', command: 'ss', xp: 30, lessonIds: ['sockets.predict', 'sockets.predict2', 'sockets.drill', 'sockets.prove'], unlocks: ['network-n3'] },
+      { id: 'network-n3', trackId: 'network', title: 'Secure shell', command: 'ssh-keygen', xp: 35, lessonIds: ['ssh.predict', 'ssh.predict2', 'ssh.drill', 'ssh.prove'], unlocks: ['network-n4'] },
+      { id: 'network-n4', trackId: 'network', title: 'Firewall', command: 'ufw', xp: 40, lessonIds: ['firewall.predict', 'firewall.predict2', 'firewall.drill', 'firewall.prove'], unlocks: [] },
     ],
   },
 ];

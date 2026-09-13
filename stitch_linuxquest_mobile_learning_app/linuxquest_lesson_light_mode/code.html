@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;min-height:100vh;margin:0;padding:0;background-color:#10141a;color:#dfe2eb;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#8aebff", "primary-fixed": "#a2eeff", "on-tertiary-container": "#6e4600", "inverse-primary": "#006877", "border-subtle": "#21262D", "on-tertiary-fixed": "#2a1800", "track-sysadmin": "#FB923C", "tertiary-fixed-dim": "#ffb957", "secondary-fixed-dim": "#f8acff", "on-tertiary": "#462b00", "on-tertiary-fixed-variant": "#643f00", "surface-tint": "#2fd9f4", "surface-container-low": "#181c22", "surface-dim": "#10141a", "surface-container-highest": "#31353c", "on-surface-variant": "#bbc9cd", "text-primary": "#E6EDF3", "success": "#3FB950", "surface-bright": "#353940", "primary-fixed-dim": "#2fd9f4", "on-primary-fixed": "#001f25", "text-secondary": "#7D8590", "background": "#10141a", "light-text-secondary": "#656D76", "error-container": "#93000a", "surface": "#161B22", "tertiary-container": "#ffb13b", "surface-variant": "#31353c", "terminal-dark-box": "#0A0E14", "surface-container": "#1c2026", "on-primary-container": "#005763", "secondary-fixed": "#ffd6ff", "on-error-container": "#ffdad6", "track-basics": "#22D3EE", "track-network": "#4ADE80", "surface-container-high": "#262a31", "on-secondary": "#570067", "secondary": "#f8acff", "on-primary": "#00363e", "on-secondary-container": "#f396ff", "inverse-on-surface": "#2d3137", "light-text-primary": "#1F2328", "tertiary-fixed": "#ffddb5", "on-surface": "#dfe2eb", "on-secondary-fixed": "#350040", "on-error": "#690005", "surface-container-lowest": "#0a0e14", "outline": "#859397", "error": "#F85149", "inverse-surface": "#dfe2eb", "on-secondary-fixed-variant": "#7b0190", "primary-container": "#22d3ee", "light-border": "#D0D7DE", "track-dev": "#A78BFA", "warning": "#D29922", "tertiary": "#ffd6a3", "on-background": "#dfe2eb", "on-primary-fixed-variant": "#004e5a", "secondary-container": "#7d0793", "outline-variant": "#3c494c", "light-background": "#FFFFFF", "light-surface": "#F6F8FA" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "space-md": "0.75rem", "space-lg": "1rem", "margin": "1rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "1.5rem" }, fontFamily: { "code-bold": ["JetBrains Mono"], "code-terminal": ["JetBrains Mono"], "code-caption": ["JetBrains Mono"], "label-meta": ["Inter"], "headline-section": ["Inter"], "title-card": ["Inter"], "body-medium": ["Inter"], "display-title": ["Inter"], "body-default": ["Inter"] }, fontSize: { "code-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }], "code-terminal": ["14px", { lineHeight: "20px", fontWeight: "400" }], "code-caption": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-meta": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-section": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-card": ["16px", { lineHeight: "24px", fontWeight: "600" }], "body-medium": ["14px", { lineHeight: "20px", fontWeight: "500" }], "display-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-default": ["14px", { lineHeight: "20px", fontWeight: "400" }] } } } }</script></head><body class="bg-background text-on-surface font-body-default text-body-default min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="LinuxQuest Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WphEFNCwiWX5OzFQce9D8MlceItEb2N1AID8jwQDbgUOrf6P42VcZzo22RHqb89hDUiRbX6Rg62nt4hHJf9Iz0EPPTF05qNt9PM0uKS6Xt7ljcT155NLbmOAvj1lPBkKvFokMVwV8oLS1KCe4KsQQE4jQidpTGM7cc1Nyh_uvK0KsmYtKvb9vWqXFHsGExAC2i2EQes6kpBpnzreHgAN8KK3j-HG0H9RDjDqbs2mU-VCsXcN-vjuFbnUs"/><span class="font-code-bold text-code-bold text-primary tracking-tight">LinuxQuest</span><span class="font-label-meta text-label-meta text-text-secondary hidden sm:inline">/</span><span class="font-label-meta text-label-meta text-on-surface font-medium truncate max-w-[100px]">Learn</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full text-track-sysadmin min-h-[32px]"><span class="material-symbols-outlined text-[18px] fill-1">local_fire_department</span><span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 px-gutter bg-background"><div class="flex flex-col w-full bg-light-background text-light-text-primary">
+<!-- Top compact header -->
+<div class="h-12 w-full flex items-center justify-between px-space-sm bg-light-background shadow-sm">
+<div class="flex items-center gap-space-xs">
+<button aria-label="Go back" class="flex items-center justify-center w-10 h-10 rounded-lg text-light-text-primary hover:bg-light-surface active:bg-light-border transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">chevron_left</span>
+</button>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-track-basics"></span>
+<span class="font-code-caption text-code-caption text-light-text-secondary">Basics</span>
+<span class="font-code-caption text-code-caption text-light-text-secondary">›</span>
+<span class="font-code-bold text-code-bold text-light-text-primary">ls</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center gap-1 bg-light-surface px-space-sm py-1 rounded-full text-track-sysadmin shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5</span>
+</div>
+<div class="flex items-center gap-1 bg-track-basics/15 px-space-sm py-1 rounded-full text-inverse-primary shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-code-bold text-code-bold text-xs text-on-primary-container">+15 XP</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-md p-space-sm pb-2">
+<!-- Lesson Prompt Card -->
+<div class="w-full bg-light-surface rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-code-bold text-code-caption text-track-basics tracking-wide uppercase">Lesson 3 of 10</span>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+<span class="font-label-meta text-label-meta text-light-text-secondary">Interactive Mode</span>
+</div>
+</div>
+<p class="font-body-medium text-body-medium text-light-text-primary mb-space-sm font-medium">
+        List all files including hidden ones.
+      </p>
+<div class="inline-flex items-center gap-1.5 bg-light-background px-space-sm py-1 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-warning">lightbulb</span>
+<span class="font-code-caption text-code-caption text-light-text-secondary">
+          Flag: <code class="font-code-bold text-code-bold text-light-text-primary bg-light-surface px-1 rounded">-a</code> shows entries starting with <code class="font-code-bold text-code-bold text-light-text-primary">.</code>
+</span>
+</div>
+</div>
+<!-- Authentic Developer Terminal Panel -->
+<div class="w-full bg-terminal-dark-box rounded-lg overflow-hidden shadow-xl flex flex-col">
+<!-- Terminal Header / Titlebar -->
+<div class="h-9 bg-surface-container-lowest px-space-md flex items-center justify-between select-none">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error inline-block opacity-80"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-warning inline-block opacity-80"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-success inline-block opacity-80"></span>
+</div>
+<div class="font-code-caption text-code-caption text-text-secondary opacity-90 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-text-secondary">terminal</span>
+<span>user@linuxquest: ~</span>
+</div>
+<div class="w-8 flex justify-end">
+<span class="font-code-caption text-[10px] text-text-secondary bg-surface-container-high px-1.5 py-0.5 rounded">bash</span>
+</div>
+</div>
+<!-- Terminal Body / Canvas -->
+<div class="p-space-md font-code-terminal text-code-terminal text-text-primary flex flex-col gap-1 min-h-[260px] overflow-y-auto" id="terminal-screen">
+<div class="text-text-secondary font-code-caption text-code-caption pb-1">
+          LinuxQuest Virtual Shell v5.15.0-x86_64
+        </div>
+<div class="flex items-center gap-2">
+<span class="text-track-basics font-code-bold select-none">$</span>
+<span class="text-text-secondary">pwd</span>
+</div>
+<div class="text-text-secondary pb-1">
+          /home/user
+        </div>
+<div class="flex items-center gap-2">
+<span class="text-track-basics font-code-bold select-none">$</span>
+<span class="text-text-primary font-code-bold">ls -la</span>
+</div>
+<!-- Terminal Output -->
+<div class="font-code-terminal text-code-terminal flex flex-col gap-0.5 pt-1">
+<div class="text-text-secondary text-xs">total 48</div>
+<div class="grid grid-cols-12 gap-1 text-xs py-0.5">
+<span class="col-span-3 text-text-secondary">drwxr-xr-x</span>
+<span class="col-span-1 text-text-secondary">6</span>
+<span class="col-span-2 text-text-secondary">user</span>
+<span class="col-span-3 text-text-secondary">4096</span>
+<span class="col-span-3 text-track-basics font-code-bold">.</span>
+</div>
+<div class="grid grid-cols-12 gap-1 text-xs py-0.5">
+<span class="col-span-3 text-text-secondary">drwxr-xr-x</span>
+<span class="col-span-1 text-text-secondary">3</span>
+<span class="col-span-2 text-text-secondary">root</span>
+<span class="col-span-3 text-text-secondary">4096</span>
+<span class="col-span-3 text-track-basics font-code-bold">..</span>
+</div>
+<div class="grid grid-cols-12 gap-1 text-xs py-0.5 bg-surface-container/40 px-1 rounded">
+<span class="col-span-3 text-text-secondary">-rw-r--r--</span>
+<span class="col-span-1 text-text-secondary">1</span>
+<span class="col-span-2 text-text-secondary">user</span>
+<span class="col-span-3 text-text-secondary">220</span>
+<span class="col-span-3 text-secondary-fixed font-code-bold">.bashrc</span>
+</div>
+<div class="grid grid-cols-12 gap-1 text-xs py-0.5 bg-tertiary-container/10 px-1 rounded">
+<span class="col-span-3 text-text-secondary">-rw-------</span>
+<span class="col-span-1 text-text-secondary">1</span>
+<span class="col-span-2 text-text-secondary">user</span>
+<span class="col-span-3 text-text-secondary">64</span>
+<span class="col-span-3 text-tertiary font-code-bold">.secret_token</span>
+</div>
+<div class="grid grid-cols-12 gap-1 text-xs py-0.5">
+<span class="col-span-3 text-text-secondary">drwxr-xr-x</span>
+<span class="col-span-1 text-text-secondary">2</span>
+<span class="col-span-2 text-text-secondary">user</span>
+<span class="col-span-3 text-text-secondary">4096</span>
+<span class="col-span-3 text-track-network font-code-bold">projects/</span>
+</div>
+<div class="grid grid-cols-12 gap-1 text-xs py-0.5">
+<span class="col-span-3 text-text-secondary">-rw-r--r--</span>
+<span class="col-span-1 text-text-secondary">1</span>
+<span class="col-span-2 text-text-secondary">user</span>
+<span class="col-span-3 text-text-secondary">1024</span>
+<span class="col-span-3 text-text-primary">notes.txt</span>
+</div>
+</div>
+<!-- Active Input Line with Blinking Block Cursor -->
+<div class="flex items-center gap-2 pt-2">
+<span class="text-track-basics font-code-bold select-none">$</span>
+<span class="font-code-bold text-text-primary" id="terminal-input-display"></span>
+<span class="w-2.5 h-4 bg-primary inline-block animate-pulse"></span>
+</div>
+</div>
+<!-- Quick Virtual Keys for Mobile Precision -->
+<div class="bg-surface-container-low px-space-md py-1.5 flex items-center gap-2 overflow-x-auto select-none">
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">Tab</button>
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">-</button>
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">-a</button>
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">-la</button>
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">ls</button>
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">~</button>
+<button class="virtual-key px-2.5 py-1 bg-surface rounded text-xs font-code-bold text-text-primary hover:bg-surface-bright active:scale-95 transition-all shadow-sm" type="button">clear</button>
+</div>
+</div>
+<!-- Success Feedback Ribbon (State Reveal) -->
+<div class="w-full bg-success/15 rounded-lg p-space-sm flex items-center justify-between shadow-sm" id="success-banner">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-success" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex flex-col">
+<span class="font-code-bold text-code-bold text-xs text-light-text-primary">Requirement Satisfied</span>
+<span class="font-label-meta text-label-meta text-light-text-secondary">Hidden files displayed properly.</span>
+</div>
+</div>
+<span class="font-code-caption text-[11px] bg-light-background text-success px-2 py-0.5 rounded-full font-bold shadow-sm">+15 XP READY</span>
+</div>
+<!-- Bottom Action Bar (64px) -->
+<div class="h-16 w-full flex items-center gap-space-sm mt-1">
+<!-- Hint Ghost Button -->
+<button class="h-11 flex-1 flex items-center justify-center gap-1.5 bg-light-surface rounded-lg text-light-text-primary font-body-medium text-body-medium shadow-sm active:bg-light-border hover:bg-light-surface/80 transition-colors" id="hint-btn" type="button">
+<span class="material-symbols-outlined text-[18px] text-light-text-secondary">help</span>
+<span>Hint</span>
+</button>
+<!-- Reset Ghost Button -->
+<button class="h-11 flex-1 flex items-center justify-center gap-1.5 bg-light-surface rounded-lg text-light-text-primary font-body-medium text-body-medium shadow-sm active:bg-light-border hover:bg-light-surface/80 transition-colors" id="reset-btn" type="button">
+<span class="material-symbols-outlined text-[18px] text-light-text-secondary">restart_alt</span>
+<span>Reset</span>
+</button>
+<!-- Check Primary Cyan Button -->
+<button class="h-11 flex-[1.4] flex items-center justify-center gap-1.5 bg-track-basics rounded-lg text-on-primary font-body-medium text-body-medium font-bold shadow-md active:opacity-90 active:scale-[0.98] transition-transform" id="check-btn" type="button">
+<span>Check</span>
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</button>
+</div>
+<!-- Hint Drawer Sheet (Hidden by Default) -->
+<div class="hidden w-full bg-light-surface rounded-lg p-space-md shadow-sm" id="hint-sheet">
+<div class="flex items-center gap-2 mb-1 text-track-sysadmin">
+<span class="material-symbols-outlined text-[18px]">tips_and_updates</span>
+<span class="font-code-bold text-code-caption uppercase tracking-wider">Helpful Clue</span>
+</div>
+<p class="font-body-default text-body-default text-light-text-secondary">
+        In Unix-like systems, filenames starting with a period (<code class="font-code-bold text-code-bold text-light-text-primary">.</code>) are hidden by convention. Run <code class="font-code-bold text-code-bold text-light-text-primary">ls -a</code> or combined with long listing <code class="font-code-bold text-code-bold text-light-text-primary">ls -la</code> to reveal them.
+      </p>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const hintBtn = document.getElementById('hint-btn');
+    const hintSheet = document.getElementById('hint-sheet');
+    const resetBtn = document.getElementById('reset-btn');
+    const checkBtn = document.getElementById('check-btn');
+    const inputDisplay = document.getElementById('terminal-input-display');
+    const successBanner = document.getElementById('success-banner');
+    const keys = document.querySelectorAll('.virtual-key');
+
+    let currentInput = '';
+
+    if (hintBtn && hintSheet) {
+      hintBtn.addEventListener('click', () => {
+        hintSheet.classList.toggle('hidden');
+      });
+    }
+
+    if (keys) {
+      keys.forEach(key => {
+        key.addEventListener('click', () => {
+          const val = key.textContent.trim();
+          if (val === 'clear') {
+            currentInput = '';
+          } else if (val === 'Tab') {
+            currentInput += '  ';
+          } else {
+            currentInput += (currentInput.length > 0 && !currentInput.endsWith(' ') ? ' ' : '') + val;
+          }
+          if (inputDisplay) inputDisplay.textContent = currentInput;
+        });
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        currentInput = '';
+        if (inputDisplay) inputDisplay.textContent = '';
+        if (hintSheet) hintSheet.classList.add('hidden');
+      });
+    }
+
+    if (checkBtn) {
+      checkBtn.addEventListener('click', () => {
+        if (successBanner) {
+          successBanner.classList.add('animate-bounce');
+          setTimeout(() => {
+            successBanner.classList.remove('animate-bounce');
+          }, 600);
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.35)]" data-active-classes="text-primary-container font-code-bold"><div class="h-14 flex items-center justify-around px-gutter"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary-container font-code-bold" data-path="learn" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-code-caption text-code-caption">Learn</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="tree" href="#"><span class="material-symbols-outlined text-[20px]">account_tree</span><span class="font-code-caption text-code-caption">Tree</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="stats" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span class="font-code-caption text-code-caption">Stats</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-code-caption text-code-caption">Profile</span></a></div></nav></body></html>

@@ -61,6 +61,14 @@ export default function App() {
             </RequireOnboarded>
           }
         />
+        <Route
+          path="/profile"
+          element={
+            <RequireOnboarded>
+              <Stats />
+            </RequireOnboarded>
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

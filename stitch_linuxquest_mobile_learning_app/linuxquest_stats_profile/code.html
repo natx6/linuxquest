@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;min-height:100vh;margin:0;padding:0;background-color:#10141a;color:#dfe2eb;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#8aebff", "primary-fixed": "#a2eeff", "on-tertiary-container": "#6e4600", "inverse-primary": "#006877", "border-subtle": "#21262D", "on-tertiary-fixed": "#2a1800", "track-sysadmin": "#FB923C", "tertiary-fixed-dim": "#ffb957", "secondary-fixed-dim": "#f8acff", "on-tertiary": "#462b00", "on-tertiary-fixed-variant": "#643f00", "surface-tint": "#2fd9f4", "surface-container-low": "#181c22", "surface-dim": "#10141a", "surface-container-highest": "#31353c", "on-surface-variant": "#bbc9cd", "text-primary": "#E6EDF3", "success": "#3FB950", "surface-bright": "#353940", "primary-fixed-dim": "#2fd9f4", "on-primary-fixed": "#001f25", "text-secondary": "#7D8590", "background": "#10141a", "light-text-secondary": "#656D76", "error-container": "#93000a", "surface": "#161B22", "tertiary-container": "#ffb13b", "surface-variant": "#31353c", "terminal-dark-box": "#0A0E14", "surface-container": "#1c2026", "on-primary-container": "#005763", "secondary-fixed": "#ffd6ff", "on-error-container": "#ffdad6", "track-basics": "#22D3EE", "track-network": "#4ADE80", "surface-container-high": "#262a31", "on-secondary": "#570067", "secondary": "#f8acff", "on-primary": "#00363e", "on-secondary-container": "#f396ff", "inverse-on-surface": "#2d3137", "light-text-primary": "#1F2328", "tertiary-fixed": "#ffddb5", "on-surface": "#dfe2eb", "on-secondary-fixed": "#350040", "on-error": "#690005", "surface-container-lowest": "#0a0e14", "outline": "#859397", "error": "#F85149", "inverse-surface": "#dfe2eb", "on-secondary-fixed-variant": "#7b0190", "primary-container": "#22d3ee", "light-border": "#D0D7DE", "track-dev": "#A78BFA", "warning": "#D29922", "tertiary": "#ffd6a3", "on-background": "#dfe2eb", "on-primary-fixed-variant": "#004e5a", "secondary-container": "#7d0793", "outline-variant": "#3c494c", "light-background": "#FFFFFF", "light-surface": "#F6F8FA" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "space-md": "0.75rem", "space-lg": "1rem", "margin": "1rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "1.5rem" }, fontFamily: { "code-bold": ["JetBrains Mono"], "code-terminal": ["JetBrains Mono"], "code-caption": ["JetBrains Mono"], "label-meta": ["Inter"], "headline-section": ["Inter"], "title-card": ["Inter"], "body-medium": ["Inter"], "display-title": ["Inter"], "body-default": ["Inter"] }, fontSize: { "code-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }], "code-terminal": ["14px", { lineHeight: "20px", fontWeight: "400" }], "code-caption": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-meta": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-section": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-card": ["16px", { lineHeight: "24px", fontWeight: "600" }], "body-medium": ["14px", { lineHeight: "20px", fontWeight: "500" }], "display-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-default": ["14px", { lineHeight: "20px", fontWeight: "400" }] } } } }</script></head><body class="bg-background text-on-surface font-body-default text-body-default min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="LinuxQuest Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WphEFNCwiWX5OzFQce9D8MlceItEb2N1AID8jwQDbgUOrf6P42VcZzo22RHqb89hDUiRbX6Rg62nt4hHJf9Iz0EPPTF05qNt9PM0uKS6Xt7ljcT155NLbmOAvj1lPBkKvFokMVwV8oLS1KCe4KsQQE4jQidpTGM7cc1Nyh_uvK0KsmYtKvb9vWqXFHsGExAC2i2EQes6kpBpnzreHgAN8KK3j-HG0H9RDjDqbs2mU-VCsXcN-vjuFbnUs"/><span class="font-code-bold text-code-bold text-primary tracking-tight">LinuxQuest</span><span class="font-label-meta text-label-meta text-text-secondary hidden sm:inline">/</span><span class="font-label-meta text-label-meta text-on-surface font-medium truncate max-w-[100px]">Profile</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full text-track-sysadmin min-h-[32px]"><span class="material-symbols-outlined text-[18px] fill-1">local_fire_department</span><span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 px-gutter bg-background"><div class="flex flex-col w-full pb-6 space-y-4">
+<!-- Top View Header -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">terminal</span>
+<h1 class="font-headline-section text-headline-section text-text-primary tracking-tight">Terminal Profile</h1>
+</div>
+<button aria-label="Settings" class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-text-secondary hover:text-primary transition-colors active:scale-95 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<!-- 1. Hero Profile & Level Card -->
+<div class="w-full bg-surface rounded-lg p-space-lg shadow-md relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start gap-space-md relative z-10">
+<!-- Avatar with online dot -->
+<div class="relative shrink-0">
+<div class="w-14 h-14 rounded-lg bg-terminal-dark-box flex items-center justify-center shadow-inner">
+<span class="font-code-bold text-code-bold text-track-basics">$_</span>
+</div>
+<span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-success rounded-full ring-2 ring-surface"></span>
+</div>
+<!-- Handle & Membership Info -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-code-bold text-code-bold text-primary truncate">root@hacker_kali</span>
+<span class="material-symbols-outlined text-track-basics text-[16px]">verified</span>
+</div>
+<p class="font-label-meta text-label-meta text-text-secondary mt-0.5">Member since Oct 2024</p>
+<div class="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full bg-surface-container-high">
+<span class="w-2 h-2 rounded-full bg-track-basics animate-pulse"></span>
+<span class="font-code-caption text-code-caption text-primary">Level 3 • Sudoer in Training</span>
+</div>
+</div>
+</div>
+<!-- XP & Streak Metrics Banner -->
+<div class="grid grid-cols-2 gap-space-sm mt-4 pt-3 bg-surface-container-low/60 rounded-lg p-2.5">
+<div class="flex flex-col">
+<span class="font-label-meta text-label-meta text-text-secondary">Total Experience</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-code-bold text-code-bold text-text-primary text-[15px]">1,840</span>
+<span class="font-code-caption text-code-caption text-track-basics">XP</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-meta text-label-meta text-text-secondary">Current Streak</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-track-sysadmin text-[18px]">local_fire_department</span>
+<span class="font-code-bold text-code-bold text-text-primary text-[15px]">5 Days</span>
+<span class="font-label-meta text-label-meta text-text-secondary text-[10px]">(Best: 14)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Streak Activity Calendar -->
+<div class="w-full bg-surface rounded-lg p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-title-card text-title-card text-text-primary">Terminal Activity</h2>
+<p class="font-label-meta text-label-meta text-text-secondary">57 commits &amp; commands this month</p>
+</div>
+<span class="font-code-caption text-code-caption text-track-basics bg-surface-container px-2 py-1 rounded">Last 30 Days</span>
+</div>
+<!-- 7x5 Matrix Contribution Grid -->
+<div class="bg-terminal-dark-box p-3 rounded-lg flex gap-2">
+<!-- Weekday labels -->
+<div class="flex flex-col justify-between py-0.5 font-code-caption text-[10px] text-text-secondary select-none">
+<span>M</span>
+<span>W</span>
+<span>F</span>
+</div>
+<!-- Days Grid (Columns: 5 weeks, Rows: 7 days) -->
+<div class="grid grid-flow-col grid-rows-7 gap-1.5 flex-1 items-center justify-between">
+<!-- Week 1 -->
+<div class="w-4 h-4 rounded-sm bg-surface-container-low" title="No activity"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20" title="1 command"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40" title="3 commands"></div>
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<!-- Week 2 -->
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<!-- Week 3 -->
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<!-- Week 4 -->
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/20"></div>
+<div class="w-4 h-4 rounded-sm bg-primary/40"></div>
+<!-- Week 5 (Current active streak) -->
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)]"></div>
+<div class="w-4 h-4 rounded-sm bg-primary-container shadow-[0_0_8px_rgba(34,211,238,0.35)] ring-1 ring-primary"></div>
+<div class="w-4 h-4 rounded-sm bg-surface-container-low"></div>
+</div>
+</div>
+<!-- Legend row -->
+<div class="flex items-center justify-end gap-1.5 font-code-caption text-[11px] text-text-secondary">
+<span>Less</span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container-low"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary/20"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary/40"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span>More</span>
+</div>
+</div>
+<!-- 3. Commands Mastered Card with Progress Ring -->
+<div class="w-full bg-surface rounded-lg p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-title-card text-title-card text-text-primary">Command Mastery</h2>
+<span class="font-code-bold text-code-bold text-track-basics">60% Complete</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<!-- Circular Progress Ring (SVG) -->
+<div class="relative w-24 h-24 shrink-0 flex items-center justify-center">
+<svg class="w-24 h-24 transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#1c2026" stroke-width="8"></circle>
+<!-- Circumference = ~251.2; 60% = 150.72 stroke-dasharray -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#22D3EE" stroke-dasharray="251.2" stroke-dashoffset="100.48" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-code-bold text-code-bold text-[15px] text-text-primary">18/30</span>
+<span class="font-label-meta text-[10px] text-text-secondary uppercase tracking-wider">Mastered</span>
+</div>
+</div>
+<!-- Breakdown Chips -->
+<div class="flex-1 flex flex-col gap-space-xs">
+<div class="bg-surface-container p-2 rounded flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-track-basics"></span>
+<span class="font-body-medium text-body-medium text-text-primary text-xs">Core Utilities</span>
+</div>
+<span class="font-code-bold text-code-caption text-track-basics">10/10</span>
+</div>
+<div class="bg-surface-container p-2 rounded flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-medium text-body-medium text-text-primary text-xs">Pipes &amp; Streams</span>
+</div>
+<span class="font-code-bold text-code-caption text-secondary">5/8</span>
+</div>
+<div class="bg-surface-container p-2 rounded flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-track-network"></span>
+<span class="font-body-medium text-body-medium text-text-primary text-xs">Networking</span>
+</div>
+<span class="font-code-bold text-code-caption text-track-network">3/12</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Badges & Achievements Grid (2x3) -->
+<div class="w-full flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-title-card text-title-card text-text-primary">Badges &amp; Achievements</h2>
+<span class="font-label-meta text-label-meta text-text-secondary">3 of 6 Unlocked</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Badge 1: Earned -->
+<div class="bg-surface rounded-lg p-3 flex flex-col gap-2 relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-tertiary-container shadow-[0_0_12px_rgba(255,177,59,0.25)]">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+</div>
+<span class="material-symbols-outlined text-track-basics text-[16px]">check_circle</span>
+</div>
+<div>
+<h3 class="font-code-bold text-code-bold text-text-primary text-xs">First Sudo</h3>
+<p class="font-label-meta text-label-meta text-text-secondary text-[11px] mt-0.5">Earned Oct 12</p>
+</div>
+</div>
+<!-- Badge 2: Earned -->
+<div class="bg-surface rounded-lg p-3 flex flex-col gap-2 relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-secondary shadow-[0_0_12px_rgba(248,172,255,0.25)]">
+<span class="material-symbols-outlined text-[20px]">alt_route</span>
+</div>
+<span class="material-symbols-outlined text-track-basics text-[16px]">check_circle</span>
+</div>
+<div>
+<h3 class="font-code-bold text-code-bold text-text-primary text-xs">Pipe Master</h3>
+<p class="font-label-meta text-label-meta text-text-secondary text-[11px] mt-0.5">Chained 5+ commands</p>
+</div>
+</div>
+<!-- Badge 3: Earned -->
+<div class="bg-surface rounded-lg p-3 flex flex-col gap-2 relative overflow-hidden shadow-sm">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-success shadow-[0_0_12px_rgba(63,185,80,0.25)]">
+<span class="material-symbols-outlined text-[20px]">keyboard_command_key</span>
+</div>
+<span class="material-symbols-outlined text-track-basics text-[16px]">check_circle</span>
+</div>
+<div>
+<h3 class="font-code-bold text-code-bold text-text-primary text-xs">Vim Escapist</h3>
+<p class="font-label-meta text-label-meta text-text-secondary text-[11px] mt-0.5">:wq! without errors</p>
+</div>
+</div>
+<!-- Badge 4: Locked -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2 opacity-60">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[16px]">lock</span>
+</div>
+<div>
+<h3 class="font-code-bold text-code-bold text-text-secondary text-xs">Cron Overlord</h3>
+<p class="font-label-meta text-label-meta text-text-secondary text-[11px] mt-0.5">Schedule 10 Daemons</p>
+</div>
+</div>
+<!-- Badge 5: Locked -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2 opacity-60">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">regular_expression</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[16px]">lock</span>
+</div>
+<div>
+<h3 class="font-code-bold text-code-bold text-text-secondary text-xs">Regex Wizard</h3>
+<p class="font-label-meta text-label-meta text-text-secondary text-[11px] mt-0.5">Filter complex logs</p>
+</div>
+</div>
+<!-- Badge 6: Locked -->
+<div class="bg-surface-container-low rounded-lg p-3 flex flex-col gap-2 opacity-60">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-lg bg-surface flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">memory</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[16px]">lock</span>
+</div>
+<div>
+<h3 class="font-code-bold text-code-bold text-text-secondary text-xs">Kernel Panic</h3>
+<p class="font-label-meta text-label-meta text-text-secondary text-[11px] mt-0.5">Debug init crash</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Distro & Shell Preferences Row -->
+<div class="w-full bg-surface rounded-lg p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-track-sysadmin shrink-0">
+<span class="material-symbols-outlined text-[22px]">adjust</span>
+</div>
+<div>
+<span class="font-label-meta text-label-meta text-text-secondary block">Active Distro Focus</span>
+<span class="font-code-bold text-code-bold text-text-primary">Ubuntu 24.04 LTS</span>
+</div>
+</div>
+<button class="min-h-[44px] px-3 py-2 bg-surface-container hover:bg-surface-container-high rounded-md text-primary font-code-caption text-code-caption flex items-center gap-1 transition-colors active:scale-95" type="button">
+<span>Switch</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<div class="pt-3 flex items-center justify-between bg-surface-container-low p-2.5 rounded-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-secondary text-[18px]">terminal</span>
+<span class="font-label-meta text-label-meta text-text-secondary">Shell Environment</span>
+</div>
+<span class="font-code-bold text-code-caption text-track-basics">Zsh / Bash Emulation</span>
+</div>
+</div>
+</div>
+<script>
+  // Ensure the bottom navigation reflects Profile / Stats active state
+  (function initActiveTab() {
+    const navLinks = document.querySelectorAll('nav a[data-path]');
+    navLinks.forEach(link => {
+      const path = link.getAttribute('data-path');
+      if (path === 'profile' || path === 'stats') {
+        link.classList.remove('text-text-secondary');
+        link.classList.add('text-primary-container', 'font-code-bold');
+      } else {
+        link.classList.remove('text-primary-container', 'font-code-bold');
+        link.classList.add('text-text-secondary');
+      }
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.35)]" data-active-classes="text-primary-container font-code-bold"><div class="h-14 flex items-center justify-around px-gutter"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="learn" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-code-caption text-code-caption">Learn</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="tree" href="#"><span class="material-symbols-outlined text-[20px]">account_tree</span><span class="font-code-caption text-code-caption">Tree</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="stats" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span class="font-code-caption text-code-caption">Stats</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary-container font-code-bold" data-path="profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-code-caption text-code-caption">Profile</span></a></div></nav></body></html>

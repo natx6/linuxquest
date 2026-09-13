@@ -1,6 +1,6 @@
-# LinuxQuest (MVP steps 1–3)
+# LinuxQuest
 
-Mobile-first gamified PWA for learning Linux CLI. React 18 + Vite + TS + Tailwind + Zustand + React Router v6.
+Mobile-first gamified PWA for learning Linux CLI. React 18 + Vite + TS + Tailwind + xterm.js + Zustand + React Router v6. No backend — everything client-side.
 
 ## Run
 
@@ -13,20 +13,29 @@ npm run preview
 
 ## Routes
 
-- `/onboarding` — distro picker (Ubuntu / Arch / Fedora / Alpine). Saves to `lq:user` via `userStore`, then → `/`.
-- `/` — Hub (greeting, XP card, continue-learning, daily challenge stub, tracks).
-- `/lesson/:id` — placeholder until steps 4–6 (VFS + parser + terminal + validator).
-- `/tree` — placeholder until step 8.
-- `/stats` — placeholder until step 7.
+- `/onboarding` — distro picker (Ubuntu / Arch / Fedora / Alpine) → saves to `lq:user` → `/`
+- `/` — Hub (greeting, XP/level, continue-learning, daily challenge, tracks, install banner after 3 lessons)
+- `/lesson/:id` — 10 Basics lessons with real xterm terminal, Hint/Reset/Check, XP + unlocks
+- `/tree` — 4 tracks × 4 nodes with states + bottom sheet
+- `/stats` + `/profile` — level hero, activity graph, badges, mastery ring, distro switch
 
-## Persistence
+## Core logic
 
-`src/lib/storage.ts` wraps `localStorage` (`lq:user`, `lq:progress`). Swap internals to IndexedDB later without touching callers. Stores hydrate on boot and persist (debounced) on change.
+- `lib/vfs.ts` — VirtualFS (`getNode/listDir/readFile/writeFile/mkdir/remove/resolvePath`)
+- `lib/commands.ts` — 27 commands + pipes (`|`) + redirects (`>`/`>>`) + `-la` flag parsing + distro-aware `apt/pacman/dnf/apk` swap
+- `lib/validator.ts` — checks command/output/fsState with partial credit
+- `lib/xp.ts` — `lessonXp = 25 − hints×5 (floor 5)`, `xpForLevel(n) = 100·n·1.5^(n−1)`
+- `lib/storage.ts` — `lq:user` / `lq:progress` wrappers (swappable to IndexedDB), `resetAll()` for dev
+- `lib/push.ts` — push stub for streak reminders
+
+## Content
+
+10 Basics lessons (`data/lessons.ts`): pwd, ls, ls-a, cd, cat, mkdir+touch, cp+mv, rm, grep, pipes. Skill tree (`data/skillTree.ts`): Basics (unlocked) → Sysadmin → Dev → Network; finishing `basics.pipes` unlocks `sysadmin-n1`.
 
 ## PWA
 
-`vite-plugin-pwa` configured: manifest (name LinuxQuest, theme `#0D1117`), precache + Google Fonts runtime cache. Icons: add `public/icons/icon-192.png` + `icon-512.png` before release build.
+Manifest (LinuxQuest, `#0D1117`, standalone, 192/512 icons), precache + font runtime cache, custom install banner after 3 completed lessons.
 
-## Next (paused per plan)
+## Deploy (Vercel)
 
-Steps 4+: VirtualFS + CommandParser → Terminal → Lesson validation + XP → Hub/Stats real data → Skill tree → remaining commands → 10 lessons seed → PWA polish.
+Import `natx6/linuxquest`, framework Vite, build `tsc && vite build`, output `dist`.

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;min-height:100vh;margin:0;padding:0;background-color:#10141a;color:#dfe2eb;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#8aebff", "primary-fixed": "#a2eeff", "on-tertiary-container": "#6e4600", "inverse-primary": "#006877", "border-subtle": "#21262D", "on-tertiary-fixed": "#2a1800", "track-sysadmin": "#FB923C", "tertiary-fixed-dim": "#ffb957", "secondary-fixed-dim": "#f8acff", "on-tertiary": "#462b00", "on-tertiary-fixed-variant": "#643f00", "surface-tint": "#2fd9f4", "surface-container-low": "#181c22", "surface-dim": "#10141a", "surface-container-highest": "#31353c", "on-surface-variant": "#bbc9cd", "text-primary": "#E6EDF3", "success": "#3FB950", "surface-bright": "#353940", "primary-fixed-dim": "#2fd9f4", "on-primary-fixed": "#001f25", "text-secondary": "#7D8590", "background": "#10141a", "light-text-secondary": "#656D76", "error-container": "#93000a", "surface": "#161B22", "tertiary-container": "#ffb13b", "surface-variant": "#31353c", "terminal-dark-box": "#0A0E14", "surface-container": "#1c2026", "on-primary-container": "#005763", "secondary-fixed": "#ffd6ff", "on-error-container": "#ffdad6", "track-basics": "#22D3EE", "track-network": "#4ADE80", "surface-container-high": "#262a31", "on-secondary": "#570067", "secondary": "#f8acff", "on-primary": "#00363e", "on-secondary-container": "#f396ff", "inverse-on-surface": "#2d3137", "light-text-primary": "#1F2328", "tertiary-fixed": "#ffddb5", "on-surface": "#dfe2eb", "on-secondary-fixed": "#350040", "on-error": "#690005", "surface-container-lowest": "#0a0e14", "outline": "#859397", "error": "#F85149", "inverse-surface": "#dfe2eb", "on-secondary-fixed-variant": "#7b0190", "primary-container": "#22d3ee", "light-border": "#D0D7DE", "track-dev": "#A78BFA", "warning": "#D29922", "tertiary": "#ffd6a3", "on-background": "#dfe2eb", "on-primary-fixed-variant": "#004e5a", "secondary-container": "#7d0793", "outline-variant": "#3c494c", "light-background": "#FFFFFF", "light-surface": "#F6F8FA" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "space-md": "0.75rem", "space-lg": "1rem", "margin": "1rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "1.5rem" }, fontFamily: { "code-bold": ["JetBrains Mono"], "code-terminal": ["JetBrains Mono"], "code-caption": ["JetBrains Mono"], "label-meta": ["Inter"], "headline-section": ["Inter"], "title-card": ["Inter"], "body-medium": ["Inter"], "display-title": ["Inter"], "body-default": ["Inter"] }, fontSize: { "code-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }], "code-terminal": ["14px", { lineHeight: "20px", fontWeight: "400" }], "code-caption": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-meta": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-section": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-card": ["16px", { lineHeight: "24px", fontWeight: "600" }], "body-medium": ["14px", { lineHeight: "20px", fontWeight: "500" }], "display-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-default": ["14px", { lineHeight: "20px", fontWeight: "400" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background text-on-surface font-body-default text-body-default min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="LinuxQuest Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WphEFNCwiWX5OzFQce9D8MlceItEb2N1AID8jwQDbgUOrf6P42VcZzo22RHqb89hDUiRbX6Rg62nt4hHJf9Iz0EPPTF05qNt9PM0uKS6Xt7ljcT155NLbmOAvj1lPBkKvFokMVwV8oLS1KCe4KsQQE4jQidpTGM7cc1Nyh_uvK0KsmYtKvb9vWqXFHsGExAC2i2EQes6kpBpnzreHgAN8KK3j-HG0H9RDjDqbs2mU-VCsXcN-vjuFbnUs"/><span class="font-code-bold text-code-bold text-primary tracking-tight">LinuxQuest</span><span class="font-label-meta text-label-meta text-text-secondary hidden sm:inline">/</span><span class="font-label-meta text-label-meta text-on-surface font-medium truncate max-w-[100px]">Learn</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full text-track-sysadmin min-h-[32px]"><span class="material-symbols-outlined text-[18px] fill-1">local_fire_department</span><span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 px-gutter bg-background"><div class="flex flex-col w-full gap-space-md">
+<!-- Interactive Header Bar -->
+<section class="flex items-center justify-between w-full h-12 bg-surface-container px-space-sm rounded-lg shadow-sm">
+<div class="flex items-center gap-space-xs min-w-0">
+<button aria-label="Navigate back" class="flex items-center justify-center w-11 h-11 rounded-lg text-text-primary hover:bg-surface-container-high transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</button>
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="w-2 h-2 rounded-full bg-track-basics shadow-[0_0_8px_rgba(34,211,238,0.5)] shrink-0"></span>
+<span class="font-body-medium text-body-medium text-text-primary truncate">Basics</span>
+<span class="text-text-secondary text-xs">›</span>
+<span class="font-code-bold text-code-bold text-primary truncate">ls</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded-full text-track-sysadmin shadow-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-code-bold text-code-caption text-track-sysadmin">5</span>
+</div>
+<div class="flex items-center gap-1 bg-on-tertiary-container/30 px-2 py-1 rounded-full text-tertiary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-code-bold text-code-caption text-tertiary-fixed">+15 XP</span>
+</div>
+</div>
+</section>
+<!-- Challenge Prompt Card -->
+<section class="w-full bg-surface-container-low rounded-xl p-space-md shadow-md flex flex-col gap-space-xs relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-code-caption text-code-caption uppercase tracking-wider text-primary">Lesson 3 of 10</span>
+</div>
+<span class="font-label-meta text-label-meta text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> ~2m
+      </span>
+</div>
+<p class="font-headline-section text-[15px] leading-tight text-text-primary">
+      List all files including hidden ones.
+    </p>
+<div class="flex items-center flex-wrap gap-space-xs pt-1">
+<div class="inline-flex items-center gap-1.5 bg-surface-container-highest px-2.5 py-1 rounded-full text-text-secondary">
+<span class="material-symbols-outlined text-[14px] text-primary">lightbulb</span>
+<span class="font-code-caption text-code-caption text-on-surface-variant">Flag: <code class="font-code-bold text-primary bg-surface-container-lowest px-1 rounded">-a</code> shows entries starting with <code class="font-code-bold text-primary">.</code></span>
+</div>
+</div>
+</section>
+<!-- Interactive Terminal Window -->
+<section class="w-full bg-terminal-dark-box rounded-xl shadow-xl flex flex-col overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+<!-- Window Title Bar -->
+<div class="flex items-center justify-between px-space-md py-2.5 bg-surface-container-lowest select-none">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error/70"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-warning/70"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-success/70"></span>
+</div>
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-[14px] text-primary/60">terminal</span>
+<span class="font-code-caption text-code-caption text-text-secondary">user@linuxquest: ~</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-text-secondary/50">drag_handle</span>
+</div>
+</div>
+<!-- Terminal Content Area -->
+<div class="p-space-md font-code-terminal text-code-terminal leading-[1.6] text-text-primary flex flex-col gap-2 overflow-x-auto min-h-[220px]" id="terminal-body">
+<!-- Line 1: Standard ls execution -->
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-track-basics font-code-bold">user@linuxquest</span><span class="text-text-secondary">:</span><span class="text-track-dev">~</span><span class="text-primary font-code-bold">$</span>
+<span class="text-text-primary font-code-bold">ls</span>
+</div>
+<div class="text-text-secondary pl-3 pt-0.5 tracking-wide flex flex-wrap gap-x-4">
+<span class="text-track-basics">Documents/</span>
+<span class="text-track-basics">Downloads/</span>
+<span class="text-track-basics">Music/</span>
+<span class="text-track-basics">Projects/</span>
+</div>
+</div>
+<!-- Line 2: Typed target command & simulated output -->
+<div class="flex flex-col pt-1">
+<div class="flex items-center gap-1.5">
+<span class="text-track-basics font-code-bold">user@linuxquest</span><span class="text-text-secondary">:</span><span class="text-track-dev">~</span><span class="text-primary font-code-bold">$</span>
+<span class="text-text-primary font-code-bold tracking-tight" id="terminal-cmd-display">ls -la</span>
+</div>
+<!-- Detailed realistic permission preview table -->
+<div class="pl-2 pt-1 font-code-caption text-[11px] leading-relaxed text-text-secondary whitespace-pre overflow-x-auto" id="terminal-output-preview">
+<span class="text-text-secondary/70">total 32</span>
+<span class="text-track-dev">drwxr-xr-x</span> <span class="text-text-secondary">5</span> <span class="text-text-primary">user</span> <span class="text-text-secondary">staff</span> <span class="text-track-sysadmin">160</span> Oct 24 14:10 <span class="text-primary font-code-bold">.</span>
+<span class="text-track-dev">drwxr-xr-x</span> <span class="text-text-secondary">12</span> <span class="text-text-primary">user</span> <span class="text-text-secondary">staff</span> <span class="text-track-sysadmin">384</span> Oct 24 13:58 <span class="text-text-secondary font-code-bold">..</span>
+<span class="text-track-basics">-rw-r--r--</span> <span class="text-text-secondary">1</span> <span class="text-text-primary">user</span> <span class="text-text-secondary">staff</span> <span class="text-track-sysadmin">240</span> Oct 24 14:02 <span class="text-track-network">.bashrc</span>
+<span class="text-track-basics">-rw-------</span> <span class="text-text-secondary">1</span> <span class="text-text-primary">user</span> <span class="text-text-secondary">staff</span> <span class="text-track-sysadmin">42</span> Oct 24 14:15 <span class="text-secondary font-code-bold">.secret_token</span>
+<span class="text-track-dev">drwxr-xr-x</span> <span class="text-text-secondary">2</span> <span class="text-text-primary">user</span> <span class="text-text-secondary">staff</span> <span class="text-track-sysadmin">64</span> Oct 24 14:00 <span class="text-track-basics">Documents</span></div>
+</div>
+<!-- Interactive active input line -->
+<div class="flex items-center gap-1.5 pt-1.5 mt-auto">
+<span class="text-track-basics font-code-bold">user@linuxquest</span><span class="text-text-secondary">:</span><span class="text-track-dev">~</span><span class="text-primary font-code-bold">$</span>
+<div class="flex items-center flex-1">
+<input autocomplete="off" class="bg-transparent border-none text-text-primary font-code-bold text-code-terminal outline-none p-0 m-0 w-24 shrink-0 selection:bg-primary selection:text-on-primary" id="user-terminal-input" spellcheck="false" type="text" value="ls -la"/>
+<span class="inline-block w-2 h-4 bg-primary animate-pulse ml-0.5 shadow-[0_0_8px_rgba(34,211,238,0.8)]" id="terminal-cursor"></span>
+</div>
+</div>
+</div>
+<!-- Quick Touch Chips for Mobile Ergonomics -->
+<div class="px-space-md py-2 bg-surface-container flex items-center gap-1.5 overflow-x-auto select-none">
+<span class="font-code-caption text-[11px] text-text-secondary pr-1">Keys:</span>
+<button class="bg-surface-container-highest active:bg-surface-bright px-2.5 py-1 rounded font-code-bold text-code-caption text-primary hover:text-primary-fixed shadow-sm" onclick="insertSnippet('-la')" type="button">
+        -la
+      </button>
+<button class="bg-surface-container-highest active:bg-surface-bright px-2.5 py-1 rounded font-code-bold text-code-caption text-text-primary shadow-sm" onclick="insertSnippet('-a')" type="button">
+        -a
+      </button>
+<button class="bg-surface-container-highest active:bg-surface-bright px-2.5 py-1 rounded font-code-bold text-code-caption text-text-primary shadow-sm" onclick="insertSnippet('-l')" type="button">
+        -l
+      </button>
+<button class="bg-surface-container-highest active:bg-surface-bright px-2.5 py-1 rounded font-code-bold text-code-caption text-text-primary shadow-sm" onclick="insertSnippet('~')" type="button">
+        ~
+      </button>
+<button class="bg-surface-container-highest active:bg-surface-bright px-2.5 py-1 rounded font-code-bold text-code-caption text-text-secondary shadow-sm" onclick="insertSnippet('| grep .')" type="button">
+        | grep
+      </button>
+</div>
+</section>
+<!-- Hint Dialogue Modal Drawer -->
+<div class="hidden flex-col gap-2 p-3 bg-surface-container-high rounded-xl shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-200" id="hint-drawer">
+<div class="flex items-center justify-between text-warning">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span class="font-body-medium text-body-medium font-semibold">Terminal Concept Hint</span>
+</div>
+<button class="text-text-secondary hover:text-text-primary p-1" onclick="toggleHint()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<p class="font-body-default text-body-default text-text-primary">
+      In Linux/Unix systems, any filename prefixed with a period (<code class="font-code-bold text-primary">.</code>) is hidden by default. The <code class="font-code-bold text-primary">-a</code> (all) flag forces <code class="font-code-bold text-primary">ls</code> to reveal them. Pairing it with <code class="font-code-bold text-primary">-l</code> produces detailed permissions.
+    </p>
+</div>
+<!-- Action Bar -->
+<footer class="w-full flex items-center justify-between gap-space-sm pt-1">
+<button class="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-primary font-body-medium text-body-medium active:scale-[0.98] transition-all shadow-sm" onclick="toggleHint()" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">lightbulb</span>
+<span>Hint</span>
+</button>
+<button class="flex-1 min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-primary font-body-medium text-body-medium active:scale-[0.98] transition-all shadow-sm" onclick="resetTerminal()" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">restart_alt</span>
+<span>Reset</span>
+</button>
+<button class="flex-[1.4] min-h-[44px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-primary-container text-on-primary-container font-headline-section text-[15px] font-bold shadow-[0_0_16px_rgba(34,211,238,0.35)] hover:shadow-[0_0_24px_rgba(34,211,238,0.5)] active:scale-[0.98] transition-all" onclick="validateSolution()" type="button">
+<span>Check</span>
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</button>
+</footer>
+<!-- Milestone Success Overlay Banner (Hidden until correct check) -->
+<div class="hidden flex-col items-center gap-3 p-4 bg-surface-container-high rounded-xl text-center shadow-2xl relative overflow-hidden" id="success-banner">
+<div class="w-12 h-12 rounded-full bg-success/20 text-success flex items-center justify-center shadow-[0_0_12px_rgba(63,185,80,0.3)]">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-section text-headline-section text-text-primary font-bold">Challenge Solved!</h3>
+<p class="font-body-default text-body-default text-text-secondary">
+        You uncovered <code class="font-code-bold text-secondary">.secret_token</code> and understood hidden flags!
+      </p>
+</div>
+<div class="flex items-center justify-center gap-4 py-1">
+<div class="flex items-center gap-1 text-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="font-code-bold text-code-bold">+15 XP</span>
+</div>
+<div class="flex items-center gap-1 text-track-sysadmin">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-code-bold text-code-bold">Streak Maintained</span>
+</div>
+</div>
+<button class="w-full min-h-[44px] rounded-lg bg-primary text-on-primary font-title-card text-title-card font-bold flex items-center justify-center gap-2 shadow-[0_0_12px_rgba(138,235,255,0.4)]" type="button">
+<span>Next Lesson: File Permissions</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+  function toggleHint() {
+    const drawer = document.getElementById('hint-drawer');
+    drawer.classList.toggle('hidden');
+    drawer.classList.toggle('flex');
+  }
+
+  function insertSnippet(val) {
+    const input = document.getElementById('user-terminal-input');
+    input.value = (input.value.trim() + ' ' + val).trim();
+    document.getElementById('terminal-cmd-display').innerText = input.value;
+    input.focus();
+  }
+
+  function resetTerminal() {
+    const input = document.getElementById('user-terminal-input');
+    input.value = 'ls';
+    document.getElementById('terminal-cmd-display').innerText = 'ls';
+    document.getElementById('terminal-output-preview').classList.add('hidden');
+    document.getElementById('success-banner').classList.add('hidden');
+    document.getElementById('success-banner').classList.remove('flex');
+  }
+
+  function validateSolution() {
+    const input = document.getElementById('user-terminal-input').value.trim();
+    const preview = document.getElementById('terminal-output-preview');
+    const success = document.getElementById('success-banner');
+
+    if (input === 'ls -la' || input === 'ls -al' || input === 'ls -a') {
+      preview.classList.remove('hidden');
+      success.classList.remove('hidden');
+      success.classList.add('flex');
+      success.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert('Try incorporating the -a flag to list all files! (e.g. ls -la)');
+    }
+  }
+
+  // Interactive typing binding
+  const terminalInput = document.getElementById('user-terminal-input');
+  if (terminalInput) {
+    terminalInput.addEventListener('input', (e) => {
+      document.getElementById('terminal-cmd-display').innerText = e.target.value;
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.35)]" data-active-classes="text-primary-container font-code-bold"><div class="h-14 flex items-center justify-around px-gutter"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary-container font-code-bold" data-path="learn" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-code-caption text-code-caption">Learn</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="tree" href="#"><span class="material-symbols-outlined text-[20px]">account_tree</span><span class="font-code-caption text-code-caption">Tree</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="stats" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span class="font-code-caption text-code-caption">Stats</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-code-caption text-code-caption">Profile</span></a></div></nav></body></html>

@@ -4,8 +4,8 @@ import { Terminal, Network, BarChart3, User } from 'lucide-react';
 const tabs = [
   { to: '/', label: 'Learn', icon: Terminal, end: true },
   { to: '/tree', label: 'Tree', icon: Network, end: false },
-  { to: '/stats', label: 'Stats', icon: BarChart3, end: false },
-  { to: '/stats', label: 'Profile', icon: User, end: false, hash: true },
+  { to: '/stats', label: 'Stats', icon: BarChart3, end: true },
+  { to: '/profile', label: 'Profile', icon: User, end: true },
 ];
 
 export default function BottomNav() {

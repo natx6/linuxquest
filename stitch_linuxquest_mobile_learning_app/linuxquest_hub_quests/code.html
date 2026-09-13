@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;min-height:100vh;margin:0;padding:0;background-color:#10141a;color:#dfe2eb;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#8aebff", "primary-fixed": "#a2eeff", "on-tertiary-container": "#6e4600", "inverse-primary": "#006877", "border-subtle": "#21262D", "on-tertiary-fixed": "#2a1800", "track-sysadmin": "#FB923C", "tertiary-fixed-dim": "#ffb957", "secondary-fixed-dim": "#f8acff", "on-tertiary": "#462b00", "on-tertiary-fixed-variant": "#643f00", "surface-tint": "#2fd9f4", "surface-container-low": "#181c22", "surface-dim": "#10141a", "surface-container-highest": "#31353c", "on-surface-variant": "#bbc9cd", "text-primary": "#E6EDF3", "success": "#3FB950", "surface-bright": "#353940", "primary-fixed-dim": "#2fd9f4", "on-primary-fixed": "#001f25", "text-secondary": "#7D8590", "background": "#10141a", "light-text-secondary": "#656D76", "error-container": "#93000a", "surface": "#161B22", "tertiary-container": "#ffb13b", "surface-variant": "#31353c", "terminal-dark-box": "#0A0E14", "surface-container": "#1c2026", "on-primary-container": "#005763", "secondary-fixed": "#ffd6ff", "on-error-container": "#ffdad6", "track-basics": "#22D3EE", "track-network": "#4ADE80", "surface-container-high": "#262a31", "on-secondary": "#570067", "secondary": "#f8acff", "on-primary": "#00363e", "on-secondary-container": "#f396ff", "inverse-on-surface": "#2d3137", "light-text-primary": "#1F2328", "tertiary-fixed": "#ffddb5", "on-surface": "#dfe2eb", "on-secondary-fixed": "#350040", "on-error": "#690005", "surface-container-lowest": "#0a0e14", "outline": "#859397", "error": "#F85149", "inverse-surface": "#dfe2eb", "on-secondary-fixed-variant": "#7b0190", "primary-container": "#22d3ee", "light-border": "#D0D7DE", "track-dev": "#A78BFA", "warning": "#D29922", "tertiary": "#ffd6a3", "on-background": "#dfe2eb", "on-primary-fixed-variant": "#004e5a", "secondary-container": "#7d0793", "outline-variant": "#3c494c", "light-background": "#FFFFFF", "light-surface": "#F6F8FA" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "space-md": "0.75rem", "space-lg": "1rem", "margin": "1rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "1.5rem" }, fontFamily: { "code-bold": ["JetBrains Mono"], "code-terminal": ["JetBrains Mono"], "code-caption": ["JetBrains Mono"], "label-meta": ["Inter"], "headline-section": ["Inter"], "title-card": ["Inter"], "body-medium": ["Inter"], "display-title": ["Inter"], "body-default": ["Inter"] }, fontSize: { "code-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }], "code-terminal": ["14px", { lineHeight: "20px", fontWeight: "400" }], "code-caption": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-meta": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-section": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-card": ["16px", { lineHeight: "24px", fontWeight: "600" }], "body-medium": ["14px", { lineHeight: "20px", fontWeight: "500" }], "display-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-default": ["14px", { lineHeight: "20px", fontWeight: "400" }] } } } }</script></head><body class="bg-background text-on-surface font-body-default text-body-default min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="LinuxQuest Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WphEFNCwiWX5OzFQce9D8MlceItEb2N1AID8jwQDbgUOrf6P42VcZzo22RHqb89hDUiRbX6Rg62nt4hHJf9Iz0EPPTF05qNt9PM0uKS6Xt7ljcT155NLbmOAvj1lPBkKvFokMVwV8oLS1KCe4KsQQE4jQidpTGM7cc1Nyh_uvK0KsmYtKvb9vWqXFHsGExAC2i2EQes6kpBpnzreHgAN8KK3j-HG0H9RDjDqbs2mU-VCsXcN-vjuFbnUs"/><span class="font-code-bold text-code-bold text-primary tracking-tight">LinuxQuest</span><span class="font-label-meta text-label-meta text-text-secondary hidden sm:inline">/</span><span class="font-label-meta text-label-meta text-on-surface font-medium truncate max-w-[100px]">Learn</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full text-track-sysadmin min-h-[32px]"><span class="material-symbols-outlined text-[18px] fill-1">local_fire_department</span><span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 px-gutter bg-background"><div class="flex flex-col w-full gap-space-lg pb-6">
+<!-- Greeting & Profile Banner Area -->
+<section class="flex items-center justify-between gap-space-sm pt-2">
+<div class="flex flex-col min-w-0">
+<h1 class="font-headline-section text-headline-section text-text-primary tracking-tight truncate">
+        Welcome back, hacker
+      </h1>
+<p class="font-label-meta text-label-meta text-text-secondary flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-track-basics animate-pulse"></span>
+<span>Arch Linux • Daily streak active</span>
+</p>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-high px-3 py-1.5 rounded-full shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[20px] text-track-sysadmin animate-bounce" style="font-variation-settings: 'FILL' 1; animation-duration: 2s;">local_fire_department</span>
+<span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5 days</span>
+</div>
+</section>
+<!-- 1. XP Progress Hero Card -->
+<section class="w-full bg-surface-container rounded-lg p-space-lg shadow-md relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-secondary-container/20 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-2 mb-3">
+<div class="flex items-center gap-2 min-w-0">
+<span class="bg-secondary text-on-secondary px-2.5 py-0.5 rounded-full font-code-bold text-code-caption uppercase tracking-wider shrink-0 shadow-sm">
+          Level 3
+        </span>
+<span class="font-title-card text-title-card text-text-primary truncate">Root Novice</span>
+</div>
+<span class="font-code-terminal text-code-terminal text-text-secondary shrink-0">
+        340 / 500 XP
+      </span>
+</div>
+<!-- Progress Track Bar -->
+<div class="w-full bg-surface-container-lowest h-2 rounded-full overflow-hidden p-0.5">
+<div class="bg-gradient-to-r from-primary via-primary-container to-secondary h-full rounded-full w-[68%] transition-all duration-700 ease-out shadow-[0_0_8px_rgba(34,211,238,0.4)]"></div>
+</div>
+<!-- Milestone Footer -->
+<div class="mt-2.5 flex items-center justify-between text-text-secondary font-label-meta text-label-meta">
+<span class="flex items-center gap-1 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[15px]">arrow_upward</span>
+        160 XP to Level 4 (Sudoer)
+      </span>
+<span class="font-code-caption text-code-caption text-text-secondary">68%</span>
+</div>
+</section>
+<!-- 2. "Continue Learning" Large Interactive Card -->
+<section class="w-full bg-surface-container rounded-lg p-space-lg shadow-lg relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-track-basics via-primary to-secondary"></div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-highest text-primary font-code-bold text-code-caption px-2 py-0.5 rounded uppercase tracking-wide">
+          CURRENT QUEST
+        </span>
+<span class="font-label-meta text-label-meta text-text-secondary">•</span>
+<span class="font-label-meta text-label-meta text-text-secondary">Basics Track</span>
+</div>
+<div class="flex items-center gap-1 text-track-network">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-code-caption text-code-caption text-text-secondary">3/5 Complete</span>
+</div>
+</div>
+<!-- Quest Details -->
+<h2 class="font-title-card text-title-card text-text-primary mb-1">
+      Lesson 4: File Permissions &amp; chmod
+    </h2>
+<p class="font-body-default text-body-default text-text-secondary mb-4 line-clamp-2">
+      Master octal notation (755, 644) and practice setting read, write, and execute bits for owners and system groups.
+    </p>
+<!-- Mini Terminal Visual Context -->
+<div class="bg-terminal-dark-box rounded p-3 mb-4 font-code-terminal text-code-terminal shadow-inner overflow-x-auto">
+<div class="flex items-center gap-1.5 mb-2 opacity-60">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-warning"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-success"></span>
+<span class="ml-2 text-label-meta text-text-secondary text-[11px]">bash — 80x24</span>
+</div>
+<div class="text-text-primary text-xs">
+<span class="text-primary-container font-code-bold">$</span> ls -l deploy.sh<br/>
+<span class="text-text-secondary">-rw-r--r-- 1 hacker dev 1024 Apr 12</span><br/>
+<span class="text-primary-container font-code-bold">$</span> <span class="text-track-network">chmod 755 deploy.sh</span><span class="inline-block w-1.5 h-3 bg-primary ml-1 animate-pulse align-middle"></span>
+</div>
+</div>
+<!-- Exercises Step Indicator -->
+<div class="grid grid-cols-5 gap-1.5 mb-4">
+<div class="h-1.5 rounded-full bg-primary-container"></div>
+<div class="h-1.5 rounded-full bg-primary-container"></div>
+<div class="h-1.5 rounded-full bg-primary-container"></div>
+<div class="h-1.5 rounded-full bg-surface-bright animate-pulse"></div>
+<div class="h-1.5 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-11 bg-primary-container text-on-primary-container font-code-bold text-code-bold rounded flex items-center justify-center gap-2 active:scale-[0.99] transition-transform shadow-[0_0_12px_rgba(34,211,238,0.25)]">
+<span>Resume Mission</span>
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</button>
+</section>
+<!-- 3. "Daily Challenge" Card -->
+<section class="w-full bg-surface-container rounded-lg p-space-lg shadow-md relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-secondary-container/30 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h3 class="font-title-card text-title-card text-text-primary">Daily Challenge</h3>
+</div>
+<span class="bg-surface-container-high text-secondary font-code-bold text-code-caption px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+        2h 14m left
+      </span>
+</div>
+<p class="font-body-medium text-body-medium text-text-primary mb-1">
+      Speed Run: Find and kill zombie processes with <code class="text-secondary font-code-terminal bg-surface-container-lowest px-1.5 py-0.5 rounded">pkill</code>
+</p>
+<p class="font-label-meta text-label-meta text-text-secondary mb-3">
+      Target isolated orphaned processes running on mock production node without affecting systemd core.
+    </p>
+<!-- Rewards Row -->
+<div class="flex items-center gap-2 mb-4">
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded text-xs font-code-bold text-warning">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+<span>+50 XP Bonus</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded text-xs font-code-bold text-secondary">
+<span class="material-symbols-outlined text-[14px]">military_tech</span>
+<span>Reaper Badge</span>
+</div>
+</div>
+<!-- Ghost Accept Button -->
+<button class="w-full h-11 bg-surface-container-high hover:bg-surface-bright text-secondary font-code-bold text-code-bold rounded flex items-center justify-center gap-2 active:scale-[0.99] transition-all">
+<span>Accept Challenge</span>
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</button>
+</section>
+<!-- 4. "Your Tracks" Section -->
+<section class="w-full flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h3 class="font-title-card text-title-card text-text-primary flex items-center gap-2">
+<span>Skill Matrix Tracks</span>
+</h3>
+<span class="font-label-meta text-label-meta text-text-secondary">4 Available</span>
+</div>
+<!-- Horizontal Scroll Row -->
+<div class="flex gap-3 overflow-x-auto pb-2 -mx-gutter px-gutter scrollbar-none snap-x">
+<!-- Track 1: Basics -->
+<div class="min-w-[200px] w-[200px] snap-start bg-surface-container rounded-lg p-3.5 flex flex-col justify-between shadow-sm relative overflow-hidden shrink-0">
+<div class="absolute top-0 left-0 w-full h-1 bg-track-basics"></div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-md bg-track-basics/15 flex items-center justify-center text-track-basics">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-basics text-xs">60%</span>
+</div>
+<h4 class="font-title-card text-title-card text-text-primary text-sm mb-0.5">Basics</h4>
+<p class="font-label-meta text-label-meta text-text-secondary">6/10 completed</p>
+</div>
+<div class="mt-3 w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-track-basics h-full rounded-full w-[60%]"></div>
+</div>
+</div>
+<!-- Track 2: Sysadmin -->
+<div class="min-w-[200px] w-[200px] snap-start bg-surface-container rounded-lg p-3.5 flex flex-col justify-between shadow-sm relative overflow-hidden shrink-0">
+<div class="absolute top-0 left-0 w-full h-1 bg-track-sysadmin"></div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-md bg-track-sysadmin/15 flex items-center justify-center text-track-sysadmin">
+<span class="material-symbols-outlined text-[20px]">settings_system_daydream</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-sysadmin text-xs">20%</span>
+</div>
+<h4 class="font-title-card text-title-card text-text-primary text-sm mb-0.5">Sysadmin</h4>
+<p class="font-label-meta text-label-meta text-text-secondary">2/10 completed</p>
+</div>
+<div class="mt-3 w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-track-sysadmin h-full rounded-full w-[20%]"></div>
+</div>
+</div>
+<!-- Track 3: Dev -->
+<div class="min-w-[200px] w-[200px] snap-start bg-surface-container rounded-lg p-3.5 flex flex-col justify-between shadow-sm relative overflow-hidden shrink-0 opacity-90">
+<div class="absolute top-0 left-0 w-full h-1 bg-track-dev"></div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-md bg-track-dev/15 flex items-center justify-center text-track-dev">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<span class="bg-surface-container-high text-track-dev font-code-bold text-code-caption px-1.5 py-0.5 rounded">NEW</span>
+</div>
+<h4 class="font-title-card text-title-card text-text-primary text-sm mb-0.5">Dev Tooling</h4>
+<p class="font-label-meta text-label-meta text-track-dev">Ready to unlock</p>
+</div>
+<div class="mt-3 w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-track-dev h-full rounded-full w-0"></div>
+</div>
+</div>
+<!-- Track 4: Network -->
+<div class="min-w-[200px] w-[200px] snap-start bg-surface-container rounded-lg p-3.5 flex flex-col justify-between shadow-sm relative overflow-hidden shrink-0 opacity-60">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-md bg-surface-container-highest flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary text-[16px]">lock</span>
+</div>
+<h4 class="font-title-card text-title-card text-text-primary text-sm mb-0.5">Networking</h4>
+<p class="font-label-meta text-label-meta text-text-secondary">Requires Lvl 4</p>
+</div>
+<div class="mt-3 w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-surface-container-highest h-full rounded-full w-0"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Community Activity Ticker / Delight Element -->
+<section class="w-full bg-surface-container-low rounded-lg p-3 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">satellite_alt</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-code-caption text-code-caption text-primary truncate">Global Broadcast // Terminal 01</span>
+<p class="font-body-default text-body-default text-text-secondary text-xs truncate">
+<span class="text-text-primary font-code-bold">@alex_k</span> conquered <span class="text-track-basics">Grep Mastery</span> • 4m ago
+      </p>
+</div>
+<div class="w-2 h-2 rounded-full bg-track-network animate-ping shrink-0"></div>
+</section>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.35)]" data-active-classes="text-primary-container font-code-bold"><div class="h-14 flex items-center justify-around px-gutter"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary-container font-code-bold" data-path="learn" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-code-caption text-code-caption">Learn</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="tree" href="#"><span class="material-symbols-outlined text-[20px]">account_tree</span><span class="font-code-caption text-code-caption">Tree</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="stats" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span class="font-code-caption text-code-caption">Stats</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-code-caption text-code-caption">Profile</span></a></div></nav></body></html>

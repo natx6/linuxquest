@@ -11,7 +11,7 @@ interface ProgressState {
 }
 
 const FALLBACK = {
-  unlockedNodes: ['basics.pwd'],
+  unlockedNodes: ['basics-n1'],
   completedLessons: [] as string[],
   currentLessonId: 'basics.pwd',
 };

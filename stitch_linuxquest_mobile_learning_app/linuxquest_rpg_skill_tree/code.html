@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;min-height:100vh;margin:0;padding:0;background-color:#10141a;color:#dfe2eb;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#8aebff", "primary-fixed": "#a2eeff", "on-tertiary-container": "#6e4600", "inverse-primary": "#006877", "border-subtle": "#21262D", "on-tertiary-fixed": "#2a1800", "track-sysadmin": "#FB923C", "tertiary-fixed-dim": "#ffb957", "secondary-fixed-dim": "#f8acff", "on-tertiary": "#462b00", "on-tertiary-fixed-variant": "#643f00", "surface-tint": "#2fd9f4", "surface-container-low": "#181c22", "surface-dim": "#10141a", "surface-container-highest": "#31353c", "on-surface-variant": "#bbc9cd", "text-primary": "#E6EDF3", "success": "#3FB950", "surface-bright": "#353940", "primary-fixed-dim": "#2fd9f4", "on-primary-fixed": "#001f25", "text-secondary": "#7D8590", "background": "#10141a", "light-text-secondary": "#656D76", "error-container": "#93000a", "surface": "#161B22", "tertiary-container": "#ffb13b", "surface-variant": "#31353c", "terminal-dark-box": "#0A0E14", "surface-container": "#1c2026", "on-primary-container": "#005763", "secondary-fixed": "#ffd6ff", "on-error-container": "#ffdad6", "track-basics": "#22D3EE", "track-network": "#4ADE80", "surface-container-high": "#262a31", "on-secondary": "#570067", "secondary": "#f8acff", "on-primary": "#00363e", "on-secondary-container": "#f396ff", "inverse-on-surface": "#2d3137", "light-text-primary": "#1F2328", "tertiary-fixed": "#ffddb5", "on-surface": "#dfe2eb", "on-secondary-fixed": "#350040", "on-error": "#690005", "surface-container-lowest": "#0a0e14", "outline": "#859397", "error": "#F85149", "inverse-surface": "#dfe2eb", "on-secondary-fixed-variant": "#7b0190", "primary-container": "#22d3ee", "light-border": "#D0D7DE", "track-dev": "#A78BFA", "warning": "#D29922", "tertiary": "#ffd6a3", "on-background": "#dfe2eb", "on-primary-fixed-variant": "#004e5a", "secondary-container": "#7d0793", "outline-variant": "#3c494c", "light-background": "#FFFFFF", "light-surface": "#F6F8FA" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "space-md": "0.75rem", "space-lg": "1rem", "margin": "1rem", "space-xs": "0.25rem", "gutter": "1rem", "space-xl": "1.5rem" }, fontFamily: { "code-bold": ["JetBrains Mono"], "code-terminal": ["JetBrains Mono"], "code-caption": ["JetBrains Mono"], "label-meta": ["Inter"], "headline-section": ["Inter"], "title-card": ["Inter"], "body-medium": ["Inter"], "display-title": ["Inter"], "body-default": ["Inter"] }, fontSize: { "code-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }], "code-terminal": ["14px", { lineHeight: "20px", fontWeight: "400" }], "code-caption": ["12px", { lineHeight: "16px", fontWeight: "500" }], "label-meta": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-section": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "title-card": ["16px", { lineHeight: "24px", fontWeight: "600" }], "body-medium": ["14px", { lineHeight: "20px", fontWeight: "500" }], "display-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-default": ["14px", { lineHeight: "20px", fontWeight: "400" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background text-on-surface font-body-default text-body-default min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="LinuxQuest Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WphEFNCwiWX5OzFQce9D8MlceItEb2N1AID8jwQDbgUOrf6P42VcZzo22RHqb89hDUiRbX6Rg62nt4hHJf9Iz0EPPTF05qNt9PM0uKS6Xt7ljcT155NLbmOAvj1lPBkKvFokMVwV8oLS1KCe4KsQQE4jQidpTGM7cc1Nyh_uvK0KsmYtKvb9vWqXFHsGExAC2i2EQes6kpBpnzreHgAN8KK3j-HG0H9RDjDqbs2mU-VCsXcN-vjuFbnUs"/><span class="font-code-bold text-code-bold text-primary tracking-tight">LinuxQuest</span><span class="font-label-meta text-label-meta text-text-secondary hidden sm:inline">/</span><span class="font-label-meta text-label-meta text-on-surface font-medium truncate max-w-[100px]">Tree</span></div><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full text-track-sysadmin min-h-[32px]"><span class="material-symbols-outlined text-[18px] fill-1">local_fire_department</span><span class="font-code-bold text-code-bold text-xs text-track-sysadmin">5</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 px-gutter bg-background"><div class="flex flex-col w-full">
+<!-- Skill Tree Status & Overview Header -->
+<section class="flex flex-col gap-space-sm mb-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-section text-headline-section text-text-primary tracking-tight">Skill Tree</h1>
+<span class="inline-flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded-full text-label-meta font-label-meta text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-track-basics animate-ping"></span>
+          Tree Active
+        </span>
+</div>
+<!-- Distro Identity Pill -->
+<div class="flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-full shadow-sm">
+<div class="w-3.5 h-3.5 rounded-full bg-[#E95420] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[10px] text-white">circle</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-primary">Ubuntu 24.04</span>
+</div>
+</div>
+<!-- RPG Gamified Progression Status Bar -->
+<div class="bg-surface-container p-space-md rounded-xl flex items-center justify-between gap-space-md shadow-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="relative w-11 h-11 rounded-xl bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[24px]">terminal</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary font-code-bold text-[10px] px-1 rounded-full leading-none py-0.5">3</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-code-bold text-code-bold text-text-primary">Lvl 3 Novice Sysadmin</span>
+</div>
+<span class="font-label-meta text-label-meta text-text-secondary truncate">340 / 500 XP to Level 4</span>
+</div>
+</div>
+<!-- Track Quick Filter / Status Badges -->
+<div class="flex items-center gap-1 shrink-0">
+<div class="w-2 h-2 rounded-full bg-track-basics" title="Basics Active"></div>
+<div class="w-2 h-2 rounded-full bg-track-sysadmin" title="Sysadmin In Progress"></div>
+<div class="w-2 h-2 rounded-full bg-track-dev opacity-40" title="Dev Locked"></div>
+<div class="w-2 h-2 rounded-full bg-track-network opacity-40" title="Network Locked"></div>
+</div>
+</div>
+</section>
+<!-- SKILL TRACKS CANVAS -->
+<div class="flex flex-col gap-space-lg pb-44">
+<!-- TRACK 1: BASICS -->
+<section class="flex flex-col bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<!-- Sticky/Subtle Track Header -->
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-track-basics shadow-[0_0_8px_#22D3EE]"></span>
+<span class="font-title-card text-title-card text-text-primary">Basics</span>
+<span class="font-code-caption text-code-caption text-primary px-1.5 py-0.2 rounded bg-primary/10">Kernel Foundational</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-basics">60% <span class="font-code-caption text-code-caption text-text-secondary font-normal">(6/10)</span></span>
+</div>
+<!-- Horizontal Nodes Flow with SVG Connectors -->
+<div class="relative w-full overflow-x-auto no-scrollbar py-space-sm -mx-space-md px-space-md">
+<div class="relative flex items-center min-w-[560px] gap-8 py-2">
+<!-- Continuous Connection Line Layer -->
+<svg class="absolute top-1/2 left-7 w-[480px] -translate-y-1/2 h-1 pointer-events-none z-0" fill="none">
+<!-- Completed segments -->
+<line stroke="#22D3EE" stroke-linecap="round" stroke-width="2" x1="0" x2="250" y1="2" y2="2"></line>
+<!-- In-progress segment with dashed pulse -->
+<line stroke="#22D3EE" stroke-dasharray="4 4" stroke-opacity="0.8" stroke-width="2" x1="250" x2="350" y1="2" y2="2"></line>
+<!-- Locked muted segment -->
+<line stroke="#31353C" stroke-linecap="round" stroke-width="2" x1="350" x2="480" y1="2" y2="2"></line>
+</svg>
+<!-- Node 1: pwd (Completed) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('pwd', 'Basics', 'Print Working Directory', 'Fully mastered command.', 'Completed', 20)">
+<div class="w-14 h-14 rounded-full bg-track-basics flex items-center justify-center shadow-[0_0_12px_rgba(34,211,238,0.35)] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-background font-bold text-[24px]">check</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-primary group-hover:text-primary">pwd</span>
+</div>
+<!-- Node 2: ls (Completed) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('ls', 'Basics', 'List Directory Contents', 'Fully mastered with -la flags.', 'Completed', 20)">
+<div class="w-14 h-14 rounded-full bg-track-basics flex items-center justify-center shadow-[0_0_12px_rgba(34,211,238,0.35)] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-background font-bold text-[24px]">check</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-primary group-hover:text-primary">ls</span>
+</div>
+<!-- Node 3: cd (Completed) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('cd', 'Basics', 'Change Directory', 'Directory tree navigation.', 'Completed', 20)">
+<div class="w-14 h-14 rounded-full bg-track-basics flex items-center justify-center shadow-[0_0_12px_rgba(34,211,238,0.35)] transition-transform active:scale-95">
+<span class="material-symbols-outlined text-background font-bold text-[24px]">check</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-primary group-hover:text-primary">cd</span>
+</div>
+<!-- Node 4: cat & grep (In-progress) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('cat &amp; grep', 'Basics', 'Inspect file contents and filter output using regex patterns.', '1. Basic cat [Done] • 2. Piping to grep [Active] • 3. Regex flags', 'In-Progress', 30)">
+<div class="relative w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_16px_rgba(34,211,238,0.5)] transition-transform scale-105 active:scale-95">
+<!-- Animated / dynamic SVG radial stroke -->
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 56 56">
+<circle cx="28" cy="28" fill="none" r="25" stroke="#161B22" stroke-width="3"></circle>
+<circle cx="28" cy="28" fill="none" r="25" stroke="#22D3EE" stroke-dasharray="157" stroke-dashoffset="39" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<span class="material-symbols-outlined text-primary text-[24px] animate-pulse">terminal</span>
+</div>
+<span class="font-code-bold text-code-bold text-primary">cat &amp; grep</span>
+</div>
+<!-- Node 5: chmod (Available) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('chmod', 'Basics', 'Change file modes or access permissions.', 'Prerequisite cat &amp; grep required.', 'Available', 40)">
+<div class="relative w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_10px_rgba(34,211,238,0.25)] transition-transform active:scale-95">
+<div class="absolute inset-0 rounded-full bg-track-basics/10 animate-ping opacity-60"></div>
+<span class="material-symbols-outlined text-track-basics text-[22px]">key</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary group-hover:text-primary">chmod</span>
+</div>
+<!-- Node 6: chown (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">chown</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TRACK 2: SYSADMIN -->
+<section class="flex flex-col bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-track-sysadmin shadow-[0_0_8px_#FB923C]"></span>
+<span class="font-title-card text-title-card text-text-primary">Sysadmin</span>
+<span class="font-code-caption text-code-caption text-track-sysadmin px-1.5 py-0.2 rounded bg-track-sysadmin/10">Daemons &amp; Ops</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-sysadmin">20% <span class="font-code-caption text-code-caption text-text-secondary font-normal">(2/10)</span></span>
+</div>
+<div class="relative w-full overflow-x-auto no-scrollbar py-space-sm -mx-space-md px-space-md">
+<div class="relative flex items-center min-w-[520px] gap-8 py-2">
+<!-- Connection line -->
+<svg class="absolute top-1/2 left-7 w-[440px] -translate-y-1/2 h-1 pointer-events-none z-0" fill="none">
+<line stroke="#FB923C" stroke-linecap="round" stroke-width="2" x1="0" x2="80" y1="2" y2="2"></line>
+<line stroke="#FB923C" stroke-dasharray="4 4" stroke-width="2" x1="80" x2="180" y1="2" y2="2"></line>
+<line stroke="#31353C" stroke-linecap="round" stroke-width="2" x1="180" x2="440" y1="2" y2="2"></line>
+</svg>
+<!-- Node: ps & top (Completed) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('ps &amp; top', 'Sysadmin', 'Process management, PID inspection and resource telemetry.', 'Done: CPU and Memory tracing.', 'Completed', 25)">
+<div class="w-14 h-14 rounded-full bg-track-sysadmin flex items-center justify-center shadow-[0_0_12px_rgba(251,146,60,0.35)] active:scale-95">
+<span class="material-symbols-outlined text-background font-bold text-[24px]">check</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-primary">ps &amp; top</span>
+</div>
+<!-- Node: systemctl (In-progress) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('systemctl', 'Sysadmin', 'Control systemd system and service manager daemons.', '1. Unit statuses [Done] • 2. Enabling startup daemons [Active]', 'In-Progress', 35)">
+<div class="relative w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_16px_rgba(251,146,60,0.45)] active:scale-95">
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 56 56">
+<circle cx="28" cy="28" fill="none" r="25" stroke="#161B22" stroke-width="3"></circle>
+<circle cx="28" cy="28" fill="none" r="25" stroke="#FB923C" stroke-dasharray="157" stroke-dashoffset="78" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<span class="material-symbols-outlined text-track-sysadmin text-[22px] animate-pulse">settings</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-sysadmin">systemctl</span>
+</div>
+<!-- Node: journalctl (Available) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('journalctl', 'Sysadmin', 'Query the systemd journal logs and streaming buffers.', 'Ready to initiate quest.', 'Available', 30)">
+<div class="relative w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_10px_rgba(251,146,60,0.2)] active:scale-95">
+<div class="absolute inset-0 rounded-full bg-track-sysadmin/10 animate-ping opacity-50"></div>
+<span class="material-symbols-outlined text-track-sysadmin text-[22px]">receipt_long</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">journalctl</span>
+</div>
+<!-- Node: cron (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">cron</span>
+</div>
+<!-- Node: tar/gzip (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">tar/gzip</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TRACK 3: DEV TOOLS -->
+<section class="flex flex-col bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-track-dev shadow-[0_0_8px_#A78BFA]"></span>
+<span class="font-title-card text-title-card text-text-primary">Dev Tools</span>
+<span class="font-code-caption text-code-caption text-track-dev px-1.5 py-0.2 rounded bg-track-dev/10">Build &amp; Code</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-dev">0% <span class="font-code-caption text-code-caption text-text-secondary font-normal">(0/8)</span></span>
+</div>
+<div class="relative w-full overflow-x-auto no-scrollbar py-space-sm -mx-space-md px-space-md">
+<div class="relative flex items-center min-w-[420px] gap-8 py-2">
+<!-- Connection line -->
+<svg class="absolute top-1/2 left-7 w-[340px] -translate-y-1/2 h-1 pointer-events-none z-0" fill="none">
+<line stroke="#31353C" stroke-linecap="round" stroke-width="2" x1="0" x2="340" y1="2" y2="2"></line>
+</svg>
+<!-- Node: git init (Available) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('git init', 'Dev Tools', 'Initialize local version control repositories and staging trees.', 'Quest ready to start.', 'Available', 25)">
+<div class="relative w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_10px_rgba(167,139,250,0.3)] active:scale-95">
+<div class="absolute inset-0 rounded-full bg-track-dev/10 animate-ping opacity-40"></div>
+<span class="material-symbols-outlined text-track-dev text-[22px]">source_environment</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary group-hover:text-track-dev">git init</span>
+</div>
+<!-- Node: vim basics (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">vim basics</span>
+</div>
+<!-- Node: tmux (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">tmux</span>
+</div>
+<!-- Node: make/compile (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">make/compile</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TRACK 4: NETWORKING -->
+<section class="flex flex-col bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-track-network shadow-[0_0_8px_#4ADE80]"></span>
+<span class="font-title-card text-title-card text-text-primary">Networking</span>
+<span class="font-code-caption text-code-caption text-track-network px-1.5 py-0.2 rounded bg-track-network/10">Sockets &amp; Protocols</span>
+</div>
+<span class="font-code-bold text-code-bold text-track-network">0% <span class="font-code-caption text-code-caption text-text-secondary font-normal">(0/8)</span></span>
+</div>
+<div class="relative w-full overflow-x-auto no-scrollbar py-space-sm -mx-space-md px-space-md">
+<div class="relative flex items-center min-w-[420px] gap-8 py-2">
+<!-- Connection line -->
+<svg class="absolute top-1/2 left-7 w-[340px] -translate-y-1/2 h-1 pointer-events-none z-0" fill="none">
+<line stroke="#31353C" stroke-linecap="round" stroke-width="2" x1="0" x2="340" y1="2" y2="2"></line>
+</svg>
+<!-- Node: ping & curl (Available) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="selectNode('ping &amp; curl', 'Networking', 'Probe host reachability via ICMP and dispatch HTTP requests.', 'Initial network testing.', 'Available', 30)">
+<div class="relative w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_10px_rgba(74,222,128,0.3)] active:scale-95">
+<div class="absolute inset-0 rounded-full bg-track-network/10 animate-ping opacity-40"></div>
+<span class="material-symbols-outlined text-track-network text-[22px]">wifi_tethering</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary group-hover:text-track-network">ping &amp; curl</span>
+</div>
+<!-- Node: netstat (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">netstat</span>
+</div>
+<!-- Node: ssh keys (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">ssh keys</span>
+</div>
+<!-- Node: ufw firewall (Locked) -->
+<div class="relative z-10 flex flex-col items-center gap-1.5 opacity-40 cursor-not-allowed">
+<div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-text-secondary text-[22px]">lock</span>
+</div>
+<span class="font-code-caption text-code-caption text-text-secondary">ufw firewall</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- INTERACTIVE INSPECTION BOTTOM SHEET OVERLAY -->
+<aside class="fixed inset-x-0 bottom-14 z-40 bg-surface-container-high rounded-t-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.6)] px-gutter pt-3 pb-5 flex flex-col gap-space-sm max-w-lg mx-auto transition-transform duration-300" id="node-inspection-sheet">
+<!-- Drag Handle / Grabber Indicator -->
+<div class="w-10 h-1 bg-surface-bright rounded-full mx-auto mb-1"></div>
+<!-- Header Row with Meta Badges -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-code-caption text-[11px] font-semibold text-track-basics bg-track-basics/15 px-2 py-0.5 rounded-full" id="sheet-track-badge">Basics Track</span>
+<span class="font-code-caption text-[11px] font-semibold text-tertiary bg-tertiary/10 px-2 py-0.5 rounded-full flex items-center gap-0.5" id="sheet-reward-pill">
+<span class="material-symbols-outlined text-[12px] text-tertiary-fixed-dim">military_tech</span>
+            XP Reward: +30 XP
+          </span>
+</div>
+<h2 class="font-headline-section text-[18px] text-text-primary mt-1 tracking-tight truncate" id="sheet-node-title">Node: cat &amp; grep</h2>
+</div>
+<button aria-label="Minimize drawer" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors shrink-0" onclick="closeSheet()" type="button">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+<!-- Node Description -->
+<p class="font-body-default text-body-default text-text-secondary leading-snug" id="sheet-summary">
+      Inspect file contents and filter output using regex patterns.
+    </p>
+<!-- Sub-lesson Progression Steps -->
+<div class="bg-terminal-dark-box p-space-sm rounded-lg flex flex-col gap-1.5 font-code-terminal text-[12px]">
+<div class="flex items-center justify-between text-text-secondary">
+<span class="font-code-caption text-label-meta text-text-secondary uppercase tracking-wider">Lesson Sequence</span>
+<span class="text-primary font-code-bold" id="sheet-progress-text">2/3 Done</span>
+</div>
+<div class="flex flex-col gap-1 text-on-surface-variant pt-0.5" id="sheet-lessons-preview">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5"><span class="text-success material-symbols-outlined text-[14px]">check_circle</span> 1. Basic cat syntax</span>
+<span class="text-success text-[11px]">Done</span>
+</div>
+<div class="flex items-center justify-between text-primary font-medium">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] animate-spin">sync</span> 2. Piping stdout to grep</span>
+<span class="bg-primary/20 text-primary text-[10px] px-1 rounded">Active</span>
+</div>
+<div class="flex items-center justify-between opacity-60">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">lock</span> 3. Regex flags &amp; options</span>
+<span class="text-text-secondary text-[11px]">Pending</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="pt-1">
+<button class="w-full h-12 bg-primary text-on-primary font-code-bold text-code-bold rounded-lg shadow-[0_0_14px_rgba(34,211,238,0.4)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all" id="sheet-cta-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+        Resume Quest
+      </button>
+</div>
+</aside>
+</div>
+<script>
+  // Dynamic Inspection Panel Micro-interaction logic
+  function selectNode(name, track, summary, lessonPreview, state, xp) {
+    const sheet = document.getElementById('node-inspection-sheet');
+    const titleEl = document.getElementById('sheet-node-title');
+    const summaryEl = document.getElementById('sheet-summary');
+    const trackBadge = document.getElementById('sheet-track-badge');
+    const xpBadge = document.getElementById('sheet-reward-pill');
+    const ctaBtn = document.getElementById('sheet-cta-btn');
+
+    if (!sheet) return;
+
+    // Reset translated sheet visibility
+    sheet.classList.remove('translate-y-full');
+    
+    // Update contents
+    titleEl.textContent = 'Node: ' + name;
+    summaryEl.textContent = summary;
+    trackBadge.textContent = track + ' Track';
+    xpBadge.innerHTML = '<span class="material-symbols-outlined text-[12px]">military_tech</span> XP Reward: +' + xp + ' XP';
+
+    // State styling
+    if (state === 'Completed') {
+      ctaBtn.className = "w-full h-12 bg-surface-bright text-text-primary font-code-bold text-code-bold rounded-lg shadow flex items-center justify-center gap-2 active:scale-[0.98] transition-all";
+      ctaBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">replay</span> Practice Command';
+    } else if (state === 'In-Progress') {
+      ctaBtn.className = "w-full h-12 bg-primary text-on-primary font-code-bold text-code-bold rounded-lg shadow-[0_0_14px_rgba(34,211,238,0.4)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all";
+      ctaBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">play_arrow</span> Resume Quest';
+    } else {
+      ctaBtn.className = "w-full h-12 bg-primary text-on-primary font-code-bold text-code-bold rounded-lg shadow-[0_0_14px_rgba(34,211,238,0.3)] flex items-center justify-center gap-2 active:scale-[0.98] transition-all";
+      ctaBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">flag</span> Unlock & Begin';
+    }
+  }
+
+  function closeSheet() {
+    const sheet = document.getElementById('node-inspection-sheet');
+    if (sheet) {
+      sheet.classList.add('translate-y-[calc(100%-42px)]');
+    }
+  }
+
+  // Update shell bottom navigation highlight to actively mark the 'Tree' tab
+  document.addEventListener('DOMContentLoaded', () => {
+    const treeTab = document.querySelector('nav a[data-path="tree"]');
+    if (treeTab) {
+      treeTab.classList.remove('text-text-secondary');
+      treeTab.classList.add('text-primary', 'font-code-bold');
+      const icon = treeTab.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.style.fontVariationSettings = "'FILL' 1";
+      }
+    }
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.35)]" data-active-classes="text-primary-container font-code-bold"><div class="h-14 flex items-center justify-around px-gutter"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="learn" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-code-caption text-code-caption">Learn</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary-container font-code-bold" data-path="tree" href="#"><span class="material-symbols-outlined text-[20px]">account_tree</span><span class="font-code-caption text-code-caption">Tree</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="stats" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span class="font-code-caption text-code-caption">Stats</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-text-secondary hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-code-caption text-code-caption">Profile</span></a></div></nav></body></html>

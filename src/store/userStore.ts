@@ -11,6 +11,7 @@ interface UserState {
   onboarded: boolean;
   setDistro: (d: Exclude<Distro, null>) => void;
   addXp: (n: number) => void;
+  completeLesson: () => void;
   setOnboarded: (v: boolean) => void;
   hydrate: () => void;
 }
@@ -21,7 +22,8 @@ export const useUserStore = create<UserState>((set, get) => ({
   ...storage.get('user', FALLBACK),
 
   setDistro: (distro) => set({ distro }),
-  addXp: (n) => set({ xp: get().xp + n }),
+  addXp: (n) => set({ xp: get().xp + n, completedLessons: get().completedLessons + 0 }),
+  completeLesson: () => set({ completedLessons: get().completedLessons + 1 }),
   setOnboarded: (v) => set({ onboarded: v }),
   hydrate: () => set(storage.get('user', FALLBACK)),
 }));

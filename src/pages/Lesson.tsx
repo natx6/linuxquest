@@ -30,6 +30,17 @@ export default function Lesson() {
   const [streakStarted, setStreakStarted] = useState(false);
   const [passKind, setPassKind] = useState<'new' | 'review' | 'practice' | null>(null);
 
+  const distro = useUserStore((s) => s.distro);
+  const streak = useUserStore((s) => s.streak);
+  const xp = useUserStore((s) => s.xp);
+  const addXp = useUserStore((s) => s.addXp);
+  const bumpCompleted = useUserStore((s) => s.completeLesson);
+  const completeLesson = useProgressStore((s) => s.completeLesson);
+  const touchReviewed = useProgressStore((s) => s.touchReviewed);
+  const completedLessons = useProgressStore((s) => s.completedLessons);
+  const completedAt = useProgressStore((s) => s.completedAt);
+  const unlockedNodes = useProgressStore((s) => s.unlockedNodes);
+
   // Live XP total in the top bar, counting up when an award lands.
   const [displayXp, setDisplayXp] = useState(xp);
   const prevXpRef = useRef(xp);
@@ -47,17 +58,6 @@ export default function Lesson() {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [xp]);
-
-  const distro = useUserStore((s) => s.distro);
-  const streak = useUserStore((s) => s.streak);
-  const xp = useUserStore((s) => s.xp);
-  const addXp = useUserStore((s) => s.addXp);
-  const bumpCompleted = useUserStore((s) => s.completeLesson);
-  const completeLesson = useProgressStore((s) => s.completeLesson);
-  const touchReviewed = useProgressStore((s) => s.touchReviewed);
-  const completedLessons = useProgressStore((s) => s.completedLessons);
-  const completedAt = useProgressStore((s) => s.completedAt);
-  const unlockedNodes = useProgressStore((s) => s.unlockedNodes);
 
   const next = useMemo(() => (lesson ? nextLesson(lesson.id) : undefined), [lesson]);
 

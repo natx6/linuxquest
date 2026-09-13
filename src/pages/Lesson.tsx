@@ -21,6 +21,7 @@ export default function Lesson() {
   const [passed, setPassed] = useState(false);
   const [earned, setEarned] = useState(0);
   const [leveled, setLeveled] = useState(false);
+  const [streakStarted, setStreakStarted] = useState(false);
   const [, forceTick] = useState(0);
 
   const distro = useUserStore((s) => s.distro);
@@ -61,10 +62,12 @@ export default function Lesson() {
       if (!passed) {
         const gain = alreadyDone ? 5 : lessonXp(hintsUsed, lesson.xp);
         const before = levelForXp(xp);
+        const wasFresh = streak === 0;
         addXp(gain);
         bumpCompleted();
         setEarned(gain);
         setLeveled(levelForXp(xp + gain) > before);
+        setStreakStarted(wasFresh);
         // unlocks: if node's lessons all done (including this), unlock node.unlocks
         const node = TRACKS.flatMap((t) => t.nodes).find((n) => n.id === lesson.nodeId);
         let unlocks: string[] = [];
@@ -95,7 +98,7 @@ export default function Lesson() {
   return (
     <main className="min-h-dvh max-w-app mx-auto px-3 pt-16 pb-40 flex flex-col gap-3 bg-bg">
       {/* Top bar */}
-      <section className="fixed top-0 inset-x-0 z-30 bg-surface/80 backdrop-blur-xl">
+      <section className="fixed top-0 inset-x-0 z-30 bg-surface border-b border-border">
         <div className="max-w-app mx-auto h-14 px-2 flex items-center justify-between">
           <div className="flex items-center gap-1 min-w-0">
             <button
@@ -126,7 +129,7 @@ export default function Lesson() {
       </section>
 
       {/* Prompt card */}
-      <section className="w-full bg-surface-low rounded-xl p-3 shadow-md mt-2">
+      <section className="w-full bg-surface border border-border rounded-xl p-3 mt-2">
         <div className="flex items-center justify-between mb-1">
           <span className="font-mono text-[11px] uppercase tracking-wider text-accent-cyan">
             Lesson {lesson.index} of 10
@@ -150,7 +153,7 @@ export default function Lesson() {
       </section>
 
       {/* Terminal */}
-      <section className="w-full bg-terminal rounded-card shadow-xl overflow-hidden flex flex-col">
+      <section className="w-full bg-terminal rounded-card border border-border overflow-hidden flex flex-col">
         <div className="flex items-center justify-between px-3 py-2 bg-[#0A0E14] select-none border-b border-border">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-state-error/70" />
@@ -196,7 +199,7 @@ export default function Lesson() {
             <Check size={28} />
           </div>
           <h3 className="font-bold">Challenge Solved!</h3>
-          <p className="text-sm text-text-muted">+{earned} XP {leveled && '• Level up!'}</p>
+          <p className="text-sm text-text-muted">+{earned} XP {leveled && '• Level up!'}{streakStarted && ' • Streak started!'}</p>
           {next ? (
             <button
               onClick={() => navigate(`/lesson/${next.id}`)}
@@ -216,7 +219,7 @@ export default function Lesson() {
       )}
 
       {/* Action bar */}
-      <footer className="fixed bottom-14 inset-x-0 z-30 bg-bg/95 backdrop-blur">
+      <footer className="fixed bottom-14 inset-x-0 z-30 bg-bg border-t border-border">
         <div className="max-w-app mx-auto px-3 py-2 flex items-center gap-2">
           <button
             onClick={showHint}

@@ -57,7 +57,7 @@ export default function Stats() {
         </button>
       </div>
 
-      <section className="w-full bg-surface rounded-card p-4 shadow-md relative overflow-hidden">
+      <section className="w-full bg-surface rounded-card p-4 border border-border relative overflow-hidden">
         <div className="flex items-start gap-3">
           <div className="relative shrink-0">
             <div className="w-14 h-14 rounded-lg bg-terminal flex items-center justify-center font-mono font-bold text-track-basics">
@@ -68,8 +68,8 @@ export default function Stats() {
           <div className="flex-1 min-w-0">
             <p className="font-mono font-bold text-accent-cyan truncate">root@hacker</p>
             <p className="text-xs text-text-muted mt-0.5">Level {prog.level} • {titleForLevel(prog.level)}</p>
-            <span className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full bg-surface-high">
-              <span className="w-2 h-2 rounded-full bg-track-basics animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full bg-surface-high border border-border">
+              <span className="w-2 h-2 rounded-full bg-track-basics" />
               <span className="font-mono text-[11px] text-accent-cyan">{xp} XP total</span>
             </span>
           </div>
@@ -88,19 +88,23 @@ export default function Stats() {
         </div>
       </section>
 
-      <section className="w-full bg-surface rounded-card p-4">
+      <section className="w-full bg-surface rounded-card p-4 border border-border">
         <h2 className="font-semibold">Terminal Activity</h2>
-        <p className="text-xs text-text-muted mb-3">{completedLessons.length * 6} commands this month</p>
-        <div className="bg-terminal p-3 rounded-lg flex gap-2 overflow-x-auto no-scrollbar">
+        <p className="text-xs text-text-muted mb-3">
+          {completedLessons.length === 0
+            ? 'Complete your first lesson to light up the grid'
+            : `${completedLessons.length * 6} commands this month`}
+        </p>
+        <div className="bg-terminal p-3 rounded-lg flex gap-2 overflow-x-auto no-scrollbar border border-border">
           {Array.from({ length: 30 }).map((_, i) => {
-            const lvl = completedLessons.length === 0 && i > 22 ? 0 : activityLevel(i + completedLessons.length * 7);
+            const lvl = completedLessons.length === 0 ? 0 : activityLevel(i + completedLessons.length * 7);
             const bg = lvl === 0 ? '#1c2026' : lvl === 1 ? 'rgba(34,211,238,0.25)' : lvl === 2 ? 'rgba(34,211,238,0.5)' : '#22D3EE';
             return <span key={i} title={`${lvl} activity`} className="w-4 h-4 rounded-sm shrink-0" style={{ background: bg }} />;
           })}
         </div>
       </section>
 
-      <section className="w-full bg-surface rounded-card p-4">
+      <section className="w-full bg-surface rounded-card p-4 border border-border">
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-semibold">Command Mastery</h2>
           <span className="font-mono text-xs font-bold text-track-basics">{Math.round(ringPct)}%</span>
@@ -147,7 +151,7 @@ export default function Stats() {
         </div>
       </section>
 
-      <section className="w-full bg-surface rounded-card p-4">
+      <section className="w-full bg-surface rounded-card p-4 border border-border">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-[11px] text-text-muted">Active distro</p>

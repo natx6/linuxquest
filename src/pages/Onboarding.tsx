@@ -81,7 +81,7 @@ export default function Onboarding() {
       {/* Branding */}
       <div className="flex flex-col items-center text-center mt-1 mb-6">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-lg bg-surface flex items-center justify-center font-mono font-bold text-accent-cyan text-lg shadow-md">
+          <div className="w-10 h-10 rounded-lg bg-surface flex items-center justify-center font-mono font-bold text-accent-cyan text-lg border border-border">
             $_
           </div>
           <div className="flex items-center gap-2">
@@ -113,12 +113,12 @@ export default function Onboarding() {
                 }
               }}
               className={`relative p-4 rounded-xl cursor-pointer transition-all duration-200 select-none flex flex-col items-start bg-surface min-h-[44px] ${
-                active ? 'shadow-[0_0_16px_rgba(34,211,238,0.18)] ring-2 ring-accent-cyan' : 'hover:bg-surface-container'
+                active ? 'ring-2 ring-accent-cyan' : 'hover:bg-surface-container border border-border'
               }`}
             >
               {active && <div className="absolute inset-0 rounded-xl bg-accent-cyan/10 pointer-events-none" />}
               {active && (
-                <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-accent-cyan flex items-center justify-center shadow-sm">
+                <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-accent-cyan flex items-center justify-center">
                   <Check size={14} strokeWidth={3} className="text-[#0D1117]" />
                 </div>
               )}
@@ -133,7 +133,7 @@ export default function Onboarding() {
       </div>
 
       {/* Terminal teaser */}
-      <div className="w-full bg-terminal rounded-lg p-3 mb-6 shadow-inner">
+      <div className="w-full bg-terminal rounded-lg p-3 mb-6 border border-border">
         <div className="flex items-center gap-2 mb-1.5">
           <span className="w-2 h-2 rounded-full bg-state-error" />
           <span className="w-2 h-2 rounded-full bg-state-warning" />
@@ -144,7 +144,7 @@ export default function Onboarding() {
           <span className="text-accent-cyan font-bold">$</span>
           <span className="text-text-muted">env --distro=</span>
           <span className="text-accent-cyan font-semibold">{selected}</span>
-          <span className="inline-block w-1.5 h-3.5 bg-accent-cyan animate-pulse ml-0.5" />
+          <span className="inline-block w-1.5 h-3.5 bg-accent-cyan ml-0.5" />
         </div>
       </div>
 
@@ -153,7 +153,7 @@ export default function Onboarding() {
         <button
           onClick={() => submit(selected)}
           disabled={booting}
-          className="w-full h-12 rounded-btn bg-accent-cyan text-[#001f25] font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-[0_0_12px_rgba(34,211,238,0.25)] min-h-[44px]"
+          className="w-full h-12 rounded-btn bg-accent-cyan text-[#001f25] font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform min-h-[44px]"
         >
           <span>{booting ? `Booting ${selected}…` : 'Start Learning'}</span>
           {!booting && <ArrowRight size={18} />}

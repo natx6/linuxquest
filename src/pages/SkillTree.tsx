@@ -26,7 +26,7 @@ export default function SkillTree() {
 
   return (
     <main className="min-h-dvh max-w-app mx-auto px-4 pt-16 pb-32 bg-bg">
-      <header className="fixed top-0 inset-x-0 z-30 bg-surface/80 backdrop-blur-xl">
+      <header className="fixed top-0 inset-x-0 z-30 bg-surface border-b border-border">
         <div className="max-w-app mx-auto h-14 px-4 flex items-center justify-between">
           <h1 className="font-semibold">Skill Tree</h1>
           <span className="flex items-center gap-1 bg-surface-high px-2.5 py-1 rounded-full text-track-sysadmin">
@@ -35,7 +35,7 @@ export default function SkillTree() {
         </div>
       </header>
 
-      <section className="bg-surface-container p-3 rounded-xl flex items-center justify-between mb-4">
+      <section className="bg-surface border border-border p-3 rounded-xl flex items-center justify-between mb-4">
         <p className="font-mono text-xs">
           Lvl {prog.level} • {xp} XP <span className="text-text-muted">• {distro}</span>
         </p>

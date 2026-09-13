@@ -16,14 +16,15 @@ interface UserState {
   hydrate: () => void;
 }
 
-const FALLBACK = { distro: null as Distro, xp: 0, streak: 5, completedLessons: 0, onboarded: false };
+const FALLBACK = { distro: null as Distro, xp: 0, streak: 0, completedLessons: 0, onboarded: false };
 
 export const useUserStore = create<UserState>((set, get) => ({
   ...storage.get('user', FALLBACK),
 
   setDistro: (distro) => set({ distro }),
-  addXp: (n) => set({ xp: get().xp + n, completedLessons: get().completedLessons + 0 }),
-  completeLesson: () => set({ completedLessons: get().completedLessons + 1 }),
+  addXp: (n) => set({ xp: get().xp + n }),
+  completeLesson: () =>
+    set({ completedLessons: get().completedLessons + 1, streak: get().streak === 0 ? 1 : get().streak }),
   setOnboarded: (v) => set({ onboarded: v }),
   hydrate: () => set(storage.get('user', FALLBACK)),
 }));

@@ -1,13 +1,6 @@
 import { Check, Lock } from 'lucide-react';
 import type { SkillNode as Node, NodeState } from '../data/skillTree';
 
-const colorFor = (trackColor: string, state: NodeState) =>
-  state === 'completed'
-    ? { background: trackColor }
-    : state === 'locked'
-      ? {}
-      : { borderColor: trackColor };
-
 export default function SkillNode({
   node,
   state,
@@ -26,21 +19,21 @@ export default function SkillNode({
         onClick={onTap}
         disabled={locked}
         aria-label={`${node.command} — ${state}`}
-        className={`relative w-14 h-14 rounded-full flex items-center justify-center transition-transform active:scale-95 min-w-[56px] min-h-[56px] ${
+        className={`relative w-14 h-14 rounded-full flex items-center justify-center transition-transform active:scale-95 min-w-[56px] min-h-[56px] border ${
           state === 'completed'
-            ? 'shadow-[0_0_12px_rgba(34,211,238,0.35)]'
+            ? ''
             : locked
-              ? 'bg-surface-highest cursor-not-allowed opacity-60'
-              : 'bg-surface-container'
-        } ${state === 'available' ? 'animate-pulse' : ''}`}
-        style={colorFor(trackColor, state)}
+              ? 'bg-surface-high border-border cursor-not-allowed opacity-60'
+              : 'bg-surface border-border'
+        }`}
+        style={
+          state === 'completed'
+            ? { background: trackColor, borderColor: trackColor }
+            : state === 'locked'
+              ? {}
+              : { borderColor: trackColor }
+        }
       >
-        {state === 'available' && (
-          <span
-            className="absolute inset-0 rounded-full opacity-40 animate-ping"
-            style={{ background: `${trackColor}22` }}
-          />
-        )}
         {state === 'completed' ? (
           <Check size={24} strokeWidth={3} className="text-bg" />
         ) : locked ? (
@@ -48,7 +41,7 @@ export default function SkillNode({
         ) : state === 'in-progress' ? (
           <span className="relative flex items-center justify-center">
             <svg className="absolute inset-0 w-14 h-14 -rotate-90" viewBox="0 0 56 56">
-              <circle cx="28" cy="28" r="25" fill="none" stroke="#161B22" strokeWidth="3" />
+              <circle cx="28" cy="28" r="25" fill="none" stroke="#21262D" strokeWidth="3" />
               <circle
                 cx="28"
                 cy="28"

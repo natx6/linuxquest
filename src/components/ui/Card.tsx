@@ -9,7 +9,7 @@ export default function Card({
 }) {
   return (
     <section
-      className={`w-full bg-surface-container rounded-card p-4 shadow-md relative overflow-hidden ${className}`}
+      className={`w-full bg-surface rounded-card p-4 border border-border ${className}`}
     >
       {children}
     </section>

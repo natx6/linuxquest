@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Flame, Zap, ChevronRight, Download, X } from 'lucide-react';
+import { Flame, ChevronRight, Download, X } from 'lucide-react';
 import BottomNav from '../components/ui/BottomNav';
 import Card from '../components/ui/Card';
 import ProgressBar from '../components/ui/ProgressBar';
@@ -28,7 +28,7 @@ function InstallBanner({ doneCount }: { doneCount: number }) {
 
   if (!visible) return null;
   return (
-    <div className="w-full bg-surface-high border border-accent-cyan/40 rounded-card p-3 flex items-center gap-3">
+    <div className="w-full bg-surface-high border border-border rounded-card p-3 flex items-center gap-3">
       <Download size={20} className="text-accent-cyan shrink-0" />
       <div className="flex-1 min-w-0">
         <p className="text-sm font-semibold">Install LinuxQuest</p>
@@ -64,20 +64,28 @@ export default function Hub() {
   const { currentLessonId, completedLessons } = useProgressStore();
   const prog = progressToNextLevel(xp);
   const current = lessonById(currentLessonId);
+  const isNew = completedLessons.length === 0;
 
   return (
     <main className="min-h-dvh max-w-app mx-auto px-4 pt-4 pb-24 flex flex-col gap-4">
       <section className="flex items-center justify-between pt-2">
         <div className="min-w-0">
-          <h1 className="font-semibold text-lg tracking-tight truncate">Welcome back, hacker</h1>
-          <p className="text-xs text-text-muted flex items-center gap-1.5 mt-0.5">
-            <span className="w-2 h-2 rounded-full bg-track-basics animate-pulse" />
-            <span className="capitalize">{distro ?? 'Linux'} • Daily streak active</span>
+          <h1 className="font-semibold text-lg tracking-tight truncate">
+            {isNew ? 'Start your first quest' : 'Welcome back, hacker'}
+          </h1>
+          <p className="text-xs text-text-muted mt-0.5">
+            {isNew ? (
+              <span className="capitalize">{distro ?? 'Linux'} • 10 lessons in Basics</span>
+            ) : (
+              <span className="capitalize">{distro ?? 'Linux'} • {completedLessons.length} lessons done</span>
+            )}
           </p>
         </div>
-        <div className="flex items-center gap-1.5 bg-surface-high px-3 py-1.5 rounded-full shrink-0 min-h-[44px]">
-          <Flame size={18} className="text-track-sysadmin" />
-          <span className="font-mono text-xs text-track-sysadmin font-bold">{streak} days</span>
+        <div className="flex items-center gap-1.5 bg-surface rounded-full px-3 py-1.5 border border-border shrink-0 min-h-[44px]">
+          <Flame size={16} className={streak > 0 ? 'text-track-sysadmin' : 'text-text-muted'} />
+          <span className={`font-mono text-xs font-bold ${streak > 0 ? 'text-text' : 'text-text-muted'}`}>
+            {streak > 0 ? `${streak} day${streak === 1 ? '' : 's'}` : '0 days'}
+          </span>
         </div>
       </section>
 
@@ -86,7 +94,7 @@ export default function Hub() {
       <Card>
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="bg-accent-magenta text-[#570067] px-2.5 py-0.5 rounded-full font-mono text-[11px] uppercase shrink-0">
+            <span className="border border-border px-2.5 py-0.5 rounded-full font-mono text-[11px] text-text-muted shrink-0">
               Level {prog.level}
             </span>
             <span className="font-semibold truncate">{titleForLevel(prog.level)}</span>
@@ -95,16 +103,18 @@ export default function Hub() {
             {prog.current} / {prog.needed} XP
           </span>
         </div>
-        <ProgressBar value={prog.current} max={prog.needed} />
+        <ProgressBar value={prog.current} max={prog.needed} colorClass="bg-accent-cyan" />
         <p className="mt-2 text-xs text-text-muted">
           {prog.needed - prog.current} XP to Level {prog.level + 1} ({titleForLevel(prog.level + 1)})
         </p>
       </Card>
 
       <Card>
-        <p className="font-mono text-[11px] uppercase text-accent-cyan mb-1">Current quest</p>
+        <p className="font-mono text-[11px] text-text-muted mb-1">
+          {isNew ? 'First up' : 'Current quest'}
+        </p>
         <h2 className="font-semibold mb-1">
-          {current ? `Lesson ${current.index}: ${current.title}` : 'All basics complete'}
+          {current ? `Lesson ${current.index}: ${current.title}` : 'Basics complete'}
         </h2>
         <p className="text-sm text-text-muted mb-4">
           {current ? current.prompt : 'You finished the Basics track. Explore the skill tree.'}
@@ -114,23 +124,19 @@ export default function Hub() {
             to={`/lesson/${current.id}`}
             className="w-full h-11 bg-accent-cyan text-[#001f25] font-semibold rounded-btn flex items-center justify-center gap-2 min-h-[44px]"
           >
-            Resume <ChevronRight size={18} />
+            {isNew ? 'Start' : 'Resume'} <ChevronRight size={18} />
           </Link>
         )}
       </Card>
 
-      <Card className="!border !border-accent-magenta/30">
-        <div className="flex items-center gap-2 mb-1">
-          <Zap size={16} className="text-accent-magenta" />
-          <h3 className="font-semibold">Daily Challenge</h3>
-        </div>
+      <Card>
+        <h3 className="font-semibold mb-1">Daily Challenge</h3>
         <p className="text-sm text-text-muted mb-3">
-          Speed run: chain <code className="font-mono text-accent-magenta">ls | grep</code> in under
-          30s for +50 XP.
+          Speed run: chain <code className="font-mono">ls | grep</code> in under 30s for +50 XP.
         </p>
         <Link
           to="/lesson/basics.pipes"
-          className="w-full h-11 bg-surface-high text-accent-magenta font-semibold rounded-btn flex items-center justify-center min-h-[44px]"
+          className="w-full h-11 border border-border text-text font-semibold rounded-btn flex items-center justify-center min-h-[44px]"
         >
           Accept Challenge
         </Link>
@@ -148,10 +154,12 @@ export default function Hub() {
               <Link
                 key={t.id}
                 to="/tree"
-                className="min-w-[200px] w-[200px] bg-surface-container rounded-card p-3.5 shrink-0 relative overflow-hidden"
+                className="min-w-[200px] w-[200px] bg-surface border border-border rounded-card p-3.5 shrink-0"
               >
-                <div className="absolute top-0 left-0 w-full h-1" style={{ background: t.color }} />
-                <p className="font-semibold text-sm mb-0.5">{t.name}</p>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full" style={{ background: t.color }} />
+                  <p className="font-semibold text-sm">{t.name}</p>
+                </div>
                 <p className="text-xs text-text-muted">
                   {p.done}/{p.total} completed • {p.pct}%
                 </p>

@@ -1,28 +1,31 @@
 /** VirtualFS — nested object tree, per-lesson instance. */
 
 export type VNode =
-  | { type: 'dir'; children: Record<string, VNode> }
-  | { type: 'file'; content: string };
+  | { type: 'dir'; children: Record<string, VNode>; mode: string }
+  | { type: 'file'; content: string; mode: string };
+
+export const DEFAULT_DIR_MODE = 'drwxr-xr-x';
+export const DEFAULT_FILE_MODE = '-rw-r--r--';
 
 export type StartingFS = Record<string, unknown>;
 
 function toVNode(raw: unknown): VNode {
-  if (typeof raw === 'string') return { type: 'file', content: raw };
+  if (typeof raw === 'string') return { type: 'file', content: raw, mode: DEFAULT_FILE_MODE };
   if (raw && typeof raw === 'object') {
     const children: Record<string, VNode> = {};
     for (const [k, v] of Object.entries(raw as Record<string, unknown>)) {
       children[k] = toVNode(v);
     }
-    return { type: 'dir', children };
+    return { type: 'dir', children, mode: DEFAULT_DIR_MODE };
   }
-  return { type: 'file', content: '' };
+  return { type: 'file', content: '', mode: DEFAULT_FILE_MODE };
 }
 
 function cloneNode(n: VNode): VNode {
-  if (n.type === 'file') return { type: 'file', content: n.content };
+  if (n.type === 'file') return { type: 'file', content: n.content, mode: n.mode };
   const children: Record<string, VNode> = {};
   for (const [k, v] of Object.entries(n.children)) children[k] = cloneNode(v);
-  return { type: 'dir', children };
+  return { type: 'dir', children, mode: DEFAULT_DIR_MODE };
 }
 
 /** Normalize: ensure leading /, collapse //, resolve . (not .. — see resolvePath). */
@@ -60,7 +63,7 @@ export class VirtualFS {
   root: VNode;
 
   constructor(startingFS?: StartingFS) {
-    this.root = { type: 'dir', children: {} };
+    this.root = { type: 'dir', children: {}, mode: DEFAULT_DIR_MODE };
     // Always ensure /home/user exists
     this.ensureDir('/home/user');
     if (startingFS) this.load(startingFS);
@@ -87,7 +90,7 @@ export class VirtualFS {
   }
 
   reset(startingFS?: StartingFS) {
-    this.root = { type: 'dir', children: {} };
+    this.root = { type: 'dir', children: {}, mode: DEFAULT_DIR_MODE };
     this.ensureDir('/home/user');
     if (startingFS) this.load(startingFS);
   }
@@ -99,11 +102,11 @@ export class VirtualFS {
     let cur = this.root;
     for (const p of parts) {
       if (cur.type !== 'dir') return;
-      if (!cur.children[p]) cur.children[p] = { type: 'dir', children: {} };
+      if (!cur.children[p]) cur.children[p] = { type: 'dir', children: {}, mode: DEFAULT_DIR_MODE };
       const next = cur.children[p];
       // If a file blocks the path, replace with dir (lesson seeds are authoritative)
-      if (next.type !== 'dir') cur.children[p] = { type: 'dir', children: {} };
-      cur = cur.children[p] as { type: 'dir'; children: Record<string, VNode> };
+      if (next.type !== 'dir') cur.children[p] = { type: 'dir', children: {}, mode: DEFAULT_DIR_MODE };
+      cur = cur.children[p] as { type: 'dir'; children: Record<string, VNode>; mode: string };
     }
   }
 
@@ -152,7 +155,9 @@ export class VirtualFS {
     if (existing && existing.type === 'file' && append) {
       existing.content += content;
     } else {
-      p.children[name] = { type: 'file', content: append ? content : content };
+      const prev = p.children[name];
+      const mode = prev && prev.type === 'file' ? prev.mode : DEFAULT_FILE_MODE;
+      p.children[name] = { type: 'file', content, mode };
     }
   }
 
@@ -163,7 +168,7 @@ export class VirtualFS {
     this.ensureDir(parent);
     const p = this.getNode(parent);
     if (!p || p.type !== 'dir') return false;
-    p.children[name] = { type: 'dir', children: {} };
+    p.children[name] = { type: 'dir', children: {}, mode: DEFAULT_DIR_MODE };
     return true;
   }
 
@@ -175,6 +180,21 @@ export class VirtualFS {
     if (target.type === 'dir' && Object.keys(target.children).length > 0 && !recursive) return false;
     delete p.children[name];
     return true;
+  }
+
+  /** Absolute-path → permission string for every node (validator modeState). */
+  modes(): Record<string, string> {
+    const out: Record<string, string> = {};
+    const walk = (path: string, n: VNode) => {
+      out[path] = n.mode;
+      if (n.type === 'dir') {
+        for (const [k, v] of Object.entries(n.children)) {
+          walk(path === '/' ? '/' + k : path + '/' + k, v);
+        }
+      }
+    };
+    walk('/', this.root);
+    return out;
   }
 
   /** Snapshot for validator fsState comparison. */

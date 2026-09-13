@@ -10,6 +10,7 @@ export interface TerminalHandle {
   getSnapshot: () => Record<string, unknown>;
   getLastCommand: () => string;
   getHistory: () => string[];
+  getModes: () => Record<string, string>;
   getOutputBuffer: () => string;
   getCwd: () => string;
   insertText: (t: string) => void;
@@ -70,6 +71,7 @@ const Terminal = forwardRef<TerminalHandle, Props>(function Terminal(
     getSnapshot: () => vfsRef.current.snapshot(),
     getLastCommand: () => lastCmdRef.current,
     getHistory: () => [...historyRef.current],
+    getModes: () => vfsRef.current.modes(),
     getOutputBuffer: () => outputRef.current,
     getCwd: () => cwdRef.current,
     insertText: (t: string) => {

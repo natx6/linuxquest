@@ -84,8 +84,7 @@ const handlers: Record<string, Handler> = {
     if (long) {
       const lines = items.map((e) => {
         const isDir = e.node.type === 'dir';
-        const perms = isDir ? 'drwxr-xr-x' : '-rw-r--r--';
-        return `${perms} 1 user staff 64 Oct 24 14:00 ${e.name}${isDir ? '/' : ''}`;
+        return `${e.node.mode} 1 user staff 64 Oct 24 14:00 ${e.name}${isDir ? '/' : ''}`;
       });
       return ok((lines.join('\n') + (lines.length ? '\n' : '')));
     }
@@ -421,10 +420,34 @@ const handlers: Record<string, Handler> = {
     return ok(out.join('\n') + (out.length ? '\n' : ''));
   },
 
-  chmod: () => ok(''),
-  man: (args) => ok(args[0] ? `Manual for ${args[0]} — see lesson hints. Try ${args[0]} --help.\n` : 'What manual page do you want?\n'),
+  chmod: (args, ctx) => {
+    if (args.length < 2) return ok('', 'chmod: missing operand\n');
+    const [modeArg, target] = args;
+    const m = modeArg.match(/^[0-7]{3}$/);
+    if (!m) return ok('', `chmod: invalid mode '${modeArg}' (use 3 octal digits, e.g. 755)\n`);
+    const p = resolvePath(ctx.cwd, target);
+    const node = ctx.vfs.getNode(p);
+    if (!node) return ok('', `chmod: cannot access '${target}': No such file or directory\n`);
+    const tri = (d: string) => {
+      const n = parseInt(d, 8);
+      return (n & 4 ? 'r' : '-') + (n & 2 ? 'w' : '-') + (n & 1 ? 'x' : '-');
+    };
+    node.mode = (node.type === 'dir' ? 'd' : '-') + tri(modeArg[0]) + tri(modeArg[1]) + tri(modeArg[2]);
+    return ok('');
+  },
+  man: (args) => ok(args[0] ? (MAN[args[0]] ?? `No manual entry for ${args[0]}\n`) : 'What manual page do you want?\n'),
   clear: () => ok('', '', { clear: true }),
   exit: () => ok(''),
+};
+
+const MAN: Record<string, string> = {
+  ls: `LS(1)  List directory contents\n\n  ls [-la] [path]\n    -a  show hidden entries starting with .\n    -l  long format with permissions, owner, size\n\n  Press q to quit. Try: ls -a\n`,
+  grep: `GREP(1)  Search text by pattern\n\n  grep [-iv] <pattern> [file]\n    -i  ignore case\n    -v  invert match (lines NOT matching)\n\n  Reads stdin when piped. Try: grep error app.log\n`,
+  cd: `CD(1)  Change directory\n\n  cd <dir>   relative (Documents) or absolute (/home/user/Documents)\n  cd ..      parent directory     cd ~  home\n`,
+  cat: `CAT(1)  Print files to standard output\n\n  cat <file> [file...]   files print back-to-back, in order\n`,
+  chmod: `CHMOD(1)  Change file modes\n\n  chmod <octal> <file>   e.g. 755 = rwxr-xr-x, 644 = rw-r--r--\n  Digits: 4 read, 2 write, 1 execute. Sum per owner, group, other.\n`,
+  pwd: `PWD(1)  Print working directory\n\n  No flags needed. When lost, pwd first.\n`,
+  rm: `RM(1)  Remove files — permanently\n\n  rm <file>...   no trash, no undo. Directories need -r.\n`,
 };
 
 const DISTRO_PKG: Record<string, string> = {

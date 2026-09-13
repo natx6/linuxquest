@@ -30,6 +30,7 @@ export function validate(
   outputBuffer: string,
   fsSnapshot: Record<string, unknown>,
   commandHistory: string[] = [],
+  modes: Record<string, string> = {},
 ): ValidationResult {
   const exp: NonNullable<Lesson['expected']> = lesson.expected ?? {};
   const reasons: string[] = [];
@@ -67,6 +68,13 @@ export function validate(
     checks++;
     if (matchFs(fsSnapshot, exp.fsState)) passed++;
     else reasons.push('Filesystem state does not match yet');
+  }
+
+  if (exp.modeState) {
+    checks++;
+    const bad = Object.entries(exp.modeState).find(([path, mode]) => modes[path] !== mode);
+    if (!bad) passed++;
+    else reasons.push(`Permissions on ${bad[0]} are ${modes[bad[0]] ?? 'unknown'} — want ${bad[1]} (run ls -l to see)`);
   }
 
   if (exp.sequence?.length) {

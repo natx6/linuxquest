@@ -23,10 +23,10 @@ export const TRACKS: Track[] = [
     color: '#22D3EE',
     subtitle: 'Kernel Foundational',
     nodes: [
-      { id: 'basics-n1', trackId: 'basics', title: 'First steps', command: 'pwd · ls', xp: 20, lessonIds: ['basics.pwd', 'basics.ls', 'basics.ls-a'], unlocks: ['basics-n2'] },
-      { id: 'basics-n2', trackId: 'basics', title: 'Navigate & read', command: 'cd · cat', xp: 25, lessonIds: ['basics.cd', 'basics.cat', 'basics.mkdir-touch'], unlocks: ['basics-n3'] },
-      { id: 'basics-n3', trackId: 'basics', title: 'Manage files', command: 'cp · grep', xp: 30, lessonIds: ['basics.cp-mv', 'basics.rm', 'basics.grep'], unlocks: ['basics-n4'] },
-      { id: 'basics-n4', trackId: 'basics', title: 'Chain power', command: 'pipes', xp: 40, lessonIds: ['basics.pipes'], unlocks: ['sysadmin-n1'] },
+      { id: 'basics-n1', trackId: 'basics', title: 'Orientation', command: 'pwd · ls · hidden', xp: 20, lessonIds: ['orientation.predict', 'basics.pwd', 'basics.ls', 'hidden.predict', 'basics.ls-a', 'hidden.prove'], unlocks: ['basics-n2'] },
+      { id: 'basics-n2', trackId: 'basics', title: 'Navigate & read', command: 'cd · cat', xp: 25, lessonIds: ['moving.predict', 'basics.cd', 'moving.prove', 'reading.predict', 'basics.cat'], unlocks: ['basics-n3'] },
+      { id: 'basics-n3', trackId: 'basics', title: 'Shape & search', command: 'touch · mv · grep', xp: 30, lessonIds: ['creating.predict', 'basics.mkdir-touch', 'creating.prove', 'organizing.predict', 'basics.cp-mv', 'deleting.predict', 'basics.rm', 'searching.predict', 'basics.grep'], unlocks: ['basics-n4'] },
+      { id: 'basics-n4', trackId: 'basics', title: 'Chain power', command: 'pipes', xp: 40, lessonIds: ['chaining.predict', 'basics.pipes', 'chaining.prove'], unlocks: ['sysadmin-n1'] },
     ],
   },
   {

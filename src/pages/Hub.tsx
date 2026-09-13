@@ -5,7 +5,7 @@ import BottomNav from '../components/ui/BottomNav';
 import Card from '../components/ui/Card';
 import ProgressBar from '../components/ui/ProgressBar';
 import { useUserStore } from '../store/userStore';
-import { useProgressStore } from '../store/progressStore';
+import { useProgressStore, REVIEW_AFTER_MS } from '../store/progressStore';
 import { lessonById } from '../data/lessons';
 import { TRACKS, trackProgress } from '../data/skillTree';
 import { progressToNextLevel, titleForLevel } from '../lib/xp';
@@ -61,12 +61,17 @@ function InstallBanner({ doneCount }: { doneCount: number }) {
 
 export default function Hub() {
   const { xp, streak, distro } = useUserStore();
-  const { currentLessonId, completedLessons, unlockedNodes } = useProgressStore();
+  const { currentLessonId, completedLessons, unlockedNodes, completedAt } = useProgressStore();
   const prog = progressToNextLevel(xp);
   const current = lessonById(currentLessonId);
   const pipesUnlocked =
     unlockedNodes.includes('basics-n4') || completedLessons.includes('basics.pipes');
   const challengeTarget = pipesUnlocked ? '/lesson/basics.pipes' : `/lesson/${currentLessonId}`;
+  const now = Date.now();
+  const dueReviews = completedLessons
+    .filter((l) => !completedAt[l] || now - completedAt[l] > REVIEW_AFTER_MS)
+    .sort((a, b) => (completedAt[a] ?? 0) - (completedAt[b] ?? 0));
+  const reviewTarget = dueReviews[0] ? lessonById(dueReviews[0]) : null;
   const isNew = completedLessons.length === 0;
 
   return (
@@ -132,9 +137,26 @@ export default function Hub() {
         )}
       </Card>
 
+      {reviewTarget && (
+        <Card>
+          <p className="font-mono text-[11px] text-text-muted mb-1">
+            Review · {dueReviews.length} due · +5 XP
+          </p>
+          <h2 className="font-semibold mb-1">Keep it sharp: {reviewTarget.title}</h2>
+          <p className="text-sm text-text-muted mb-4">
+            Spaced retrieval beats re-reading. One quick rep, then it sleeps another day.
+          </p>
+          <Link
+            to={`/lesson/${reviewTarget.id}`}
+            className="w-full h-11 border border-border text-text font-semibold rounded-btn flex items-center justify-center gap-2 min-h-[44px]"
+          >
+            Review now <ChevronRight size={18} />
+          </Link>
+        </Card>
+      )}
+
       <Card>
-        <h3 className="font-semibold mb-1">Daily Challenge</h3>
-        <p className="text-sm text-text-muted mb-3">
+        <h3 className="font-semibold mb-1">Daily Challenge</h3>        <p className="text-sm text-text-muted mb-3">
           {pipesUnlocked
             ? 'Speed run: chain ls | grep in under 30s for +50 XP.'
             : 'Finish Basics to unlock the pipes speed run. Warm up on your current quest.'}

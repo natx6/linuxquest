@@ -30,7 +30,7 @@ export function validate(
   outputBuffer: string,
   fsSnapshot: Record<string, unknown>,
 ): ValidationResult {
-  const exp = lesson.expected;
+  const exp: NonNullable<Lesson['expected']> = lesson.expected ?? {};
   const reasons: string[] = [];
   let checks = 0;
   let passed = 0;

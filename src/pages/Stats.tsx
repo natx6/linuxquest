@@ -4,6 +4,7 @@ import BottomNav from '../components/ui/BottomNav';
 import { useUserStore } from '../store/userStore';
 import { useProgressStore } from '../store/progressStore';
 import { progressToNextLevel, titleForLevel } from '../lib/xp';
+import { LESSONS } from '../data/lessons';
 
 const BADGES = [
   { id: 'first', name: 'First Steps', desc: 'Complete pwd', need: ['basics.pwd'], icon: 'shield' },
@@ -11,13 +12,16 @@ const BADGES = [
   { id: 'builder', name: 'Builder', desc: 'Create files', need: ['basics.mkdir-touch'], icon: 'hammer' },
   { id: 'searcher', name: 'Grep Pro', desc: 'Master grep', need: ['basics.grep'], icon: 'search' },
   { id: 'piper', name: 'Pipe Master', desc: 'Chain commands', need: ['basics.pipes'], icon: 'spline' },
-  { id: 'finisher', name: 'Basics Hero', desc: 'Finish all 10', needCount: 10, icon: 'trophy' },
+  { id: 'finisher', name: 'Basics Hero', desc: 'Finish Basics', needCount: LESSONS.length, icon: 'trophy' },
 ];
 
 const COMMANDS_PER_LESSON: Record<string, number> = {
-  'basics.pwd': 1, 'basics.ls': 1, 'basics.ls-a': 1, 'basics.cd': 1, 'basics.cat': 1,
-  'basics.mkdir-touch': 2, 'basics.cp-mv': 2, 'basics.rm': 1, 'basics.grep': 1, 'basics.pipes': 2,
+  'basics.pwd': 1, 'basics.ls': 1, 'basics.ls-a': 1, 'hidden.prove': 1,
+  'basics.cd': 1, 'moving.prove': 1, 'basics.cat': 1,
+  'basics.mkdir-touch': 2, 'creating.prove': 2, 'basics.cp-mv': 2,
+  'basics.rm': 1, 'basics.grep': 1, 'basics.pipes': 2, 'chaining.prove': 2,
 };
+const COMMAND_TOTAL = Object.values(COMMANDS_PER_LESSON).reduce((a, n) => a + n, 0);
 
 function activityLevel(seed: number): number {
   // deterministic 0..3 pseudo-activity
@@ -35,7 +39,7 @@ export default function Stats() {
   const mastered = Object.entries(COMMANDS_PER_LESSON)
     .filter(([id]) => completedLessons.includes(id))
     .reduce((a, [, n]) => a + n, 0);
-  const ringPct = Math.min(100, (mastered / 30) * 100);
+  const ringPct = Math.min(100, (mastered / COMMAND_TOTAL) * 100);
   const circ = 2 * Math.PI * 40;
 
   const badgeEarned = (b: (typeof BADGES)[number]) => {
@@ -120,7 +124,7 @@ export default function Stats() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="font-mono font-bold text-[15px]">{mastered}/30</span>
+              <span className="font-mono font-bold text-[15px]">{mastered}/{COMMAND_TOTAL}</span>
               <span className="text-[10px] text-text-muted uppercase">Mastered</span>
             </div>
           </div>

@@ -23,10 +23,10 @@ export const TRACKS: Track[] = [
     color: '#22D3EE',
     subtitle: 'Kernel Foundational',
     nodes: [
-      { id: 'basics-n1', trackId: 'basics', title: 'Orientation', command: 'pwd · ls · hidden', xp: 20, lessonIds: ['orientation.predict', 'basics.pwd', 'basics.ls', 'hidden.predict', 'basics.ls-a', 'hidden.prove'], unlocks: ['basics-n2'] },
-      { id: 'basics-n2', trackId: 'basics', title: 'Navigate & read', command: 'cd · cat', xp: 25, lessonIds: ['moving.predict', 'basics.cd', 'moving.prove', 'reading.predict', 'basics.cat'], unlocks: ['basics-n3'] },
-      { id: 'basics-n3', trackId: 'basics', title: 'Shape & search', command: 'touch · mv · grep', xp: 30, lessonIds: ['creating.predict', 'basics.mkdir-touch', 'creating.prove', 'organizing.predict', 'basics.cp-mv', 'deleting.predict', 'basics.rm', 'searching.predict', 'basics.grep'], unlocks: ['basics-n4'] },
-      { id: 'basics-n4', trackId: 'basics', title: 'Chain power', command: 'pipes', xp: 40, lessonIds: ['chaining.predict', 'basics.pipes', 'chaining.prove'], unlocks: ['sysadmin-n1'] },
+      { id: 'basics-n1', trackId: 'basics', title: 'Orientation', command: 'pwd · ls · hidden', xp: 20, lessonIds: ['orientation.predict', 'orientation.predict2', 'basics.pwd', 'basics.ls', 'hidden.predict', 'hidden.predict2', 'basics.ls-a', 'hidden.prove'], unlocks: ['basics-n2'] },
+      { id: 'basics-n2', trackId: 'basics', title: 'Navigate & read', command: 'cd · cat', xp: 25, lessonIds: ['moving.predict', 'moving.predict2', 'basics.cd', 'moving.prove', 'reading.predict', 'reading.predict2', 'basics.cat'], unlocks: ['basics-n3'] },
+      { id: 'basics-n3', trackId: 'basics', title: 'Shape & search', command: 'touch · mv · grep', xp: 30, lessonIds: ['creating.predict', 'creating.predict2', 'basics.mkdir-touch', 'creating.prove', 'organizing.predict', 'organizing.predict2', 'basics.cp-mv', 'deleting.predict', 'deleting.predict2', 'basics.rm', 'searching.predict', 'searching.predict2', 'basics.grep'], unlocks: ['basics-n4'] },
+      { id: 'basics-n4', trackId: 'basics', title: 'Chain power', command: 'pipes', xp: 40, lessonIds: ['chaining.predict', 'chaining.predict2', 'basics.pipes', 'chaining.prove'], unlocks: ['sysadmin-n1'] },
     ],
   },
   {

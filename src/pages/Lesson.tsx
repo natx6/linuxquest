@@ -30,6 +30,24 @@ export default function Lesson() {
   const [streakStarted, setStreakStarted] = useState(false);
   const [passKind, setPassKind] = useState<'new' | 'review' | 'practice' | null>(null);
 
+  // Live XP total in the top bar, counting up when an award lands.
+  const [displayXp, setDisplayXp] = useState(xp);
+  const prevXpRef = useRef(xp);
+  useEffect(() => {
+    const from = prevXpRef.current;
+    if (from === xp) return;
+    prevXpRef.current = xp;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (t: number) => {
+      const k = Math.min(1, (t - start) / 600);
+      setDisplayXp(Math.round(from + (xp - from) * k));
+      if (k < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [xp]);
+
   const distro = useUserStore((s) => s.distro);
   const streak = useUserStore((s) => s.streak);
   const xp = useUserStore((s) => s.xp);
@@ -216,7 +234,7 @@ export default function Lesson() {
             </span>
             <span className="flex items-center gap-1 border border-border px-2 py-1 rounded-full">
               <Zap size={13} />
-              <span className="font-mono text-[11px] font-bold">+{lesson.xp} XP</span>
+              <span className="font-mono text-[11px] font-bold tabular-nums">{displayXp} XP</span>
             </span>
           </div>
         </div>
@@ -232,7 +250,9 @@ export default function Lesson() {
           <span className="text-[11px] text-text-muted">Step {lesson.index}/{LESSONS.length}</span>
         </div>
         <p className="text-[15px] leading-snug font-medium mb-2">{lesson.prompt}</p>
-        <p className="text-[13px] text-text-muted leading-snug mb-2">{lesson.concept}</p>
+        {lesson.concept.split('\n\n').map((para, i) => (
+          <p key={i} className="text-[13px] text-text-muted leading-snug mb-2">{para}</p>
+        ))}
 
         {isPredict ? (
           <div className="flex flex-col gap-2 mt-1" role="radiogroup" aria-label={lesson.question}>
